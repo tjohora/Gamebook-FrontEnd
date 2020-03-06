@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,36 +11,33 @@ import { UserService } from '../../services/user.service';
 export class RegisterComponent implements OnInit {
   //items;
   registerForm;
-  registerCheck:boolean;
+  registerCheck: boolean;
 
   //get fval() { return this.registerForm.controls; }
 
-  constructor(private formBuilder : FormBuilder,
-    private userService : UserService) {
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService) {
     this.registerForm = this.formBuilder.group({
-      userName: ['', Validators.required, Validators.maxLength(20)],
-      email: ['', Validators.required, Validators.email],
-      password: ['', Validators.required, Validators.minLength(8), Validators.maxLength(20)]
+      userName: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required]
     });
-   }
+  }
 
   ngOnInit() {
-    
+
   }
 
-  onSubmit(details){
+  onSubmit(details) {
     this.userService.register(details).subscribe(data => {
-      console.log(data)
+      //console.log("First Print: " + data)
       this.registerCheck = data;
+      if (this.registerCheck) {
+        this.router.navigate(['/login']);
+      } else {
+        alert('Username or email already in use.')
+      }
     });
-    if(this.registerCheck){
-      //success msg
-      //redirect to login
-    }else{
-      //error msg
-    }
-    console.log(details);
   }
-
-
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,9 +12,12 @@ export class LoginComponent implements OnInit {
 
   loginForm;
   loginDetails;
+  loginError: any;
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService) {
+    private userService: UserService
+
+    ) {
     
   }
 
@@ -27,8 +31,10 @@ export class LoginComponent implements OnInit {
   onSubmit(details) {
     this.userService.login(details).subscribe(data => {
       console.log(data)
-      this.loginDetails = data;
+      //saveInSession("key", "val")
+      this.loginError = data[0];
+      console.log(this.loginError);
+      
     });
-
   }
 }

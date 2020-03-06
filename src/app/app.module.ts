@@ -8,6 +8,9 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/layout/navbar/navbar.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { PostComponent } from './components/post/post.component';
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 
 
@@ -16,7 +19,9 @@ import { FooterComponent } from './components/layout/footer/footer.component';
     AppComponent,
     routingComponents,
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    CommentComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +29,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    StorageServiceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
