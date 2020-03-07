@@ -1,6 +1,10 @@
-<div class="media rounded mx-auto">
+<div class="w-50 p-3 border media rounded mx-auto">
     <div class="media-body">
-        <h5 class="mt-0">{{ post.postHeader }}</h5>
+        <h4 class="mt-0">{{ post.postHeader }}</h4>
+        <!--{{ post.userId }}--><p>Posted by<a routerLink="/user" class="btn btn-link">{{ post.userName }}</a></p>
+        <small class="font-weight-lighter">{{ post.postDate }}</small>
+
         {{ post.postContent }}
     </div>
+    <!--{{ post.postId }}--><a routerLink="/comment" class="btn btn-link">comment</a>
 </div>

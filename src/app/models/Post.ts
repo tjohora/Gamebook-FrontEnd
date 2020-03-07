@@ -1,21 +1,21 @@
 export class Post {
     postId: number;
     userId: number;
-    userName: String;
-    postHeader: String;
-    postContent: String;
-    postDate: String;
-    media: String;
+    userName: string;
+    postHeader: string;
+    postContent: string;
+    postDate: string;
+    media: string;
     active: number;
 
     public constructor(
         postId: number,
         userId: number,
-        userName: String,
-        postHeader: String,
-        postContent: String,
-        postDate: String,
-        media: String,
+        userName: string,
+        postHeader: string,
+        postContent: string,
+        postDate: string,
+        media: string,
         active: number
     ) {
         this.postId = postId,
