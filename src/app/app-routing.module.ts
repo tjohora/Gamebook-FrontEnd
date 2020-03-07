@@ -5,13 +5,14 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { AuthGuard } from './components/helpers/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'register' , component: RegisterComponent },
   { path: 'login' , component: LoginComponent },
-  { path: 'makePost' , component: PostFormComponent },
-  { path: 'makeComment' , component: CommentFormComponent},
+  { path: 'makePost' , component: PostFormComponent, canActivate: [AuthGuard] },
+  { path: 'makeComment' , component: CommentFormComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: 'home' }
 ];
 

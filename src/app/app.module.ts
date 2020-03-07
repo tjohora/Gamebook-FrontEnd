@@ -11,6 +11,7 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { PostComponent } from './components/post/post.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
+import { AuthGuard } from './components/helpers/auth.guard';
 
 
 
@@ -31,7 +32,7 @@ import { StorageServiceModule } from 'angular-webstorage-service';
     HttpClientModule,
     StorageServiceModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
