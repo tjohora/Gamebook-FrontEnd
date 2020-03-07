@@ -54,6 +54,12 @@ export class UserService {
     }));
   }
 
+  logout() {
+    // remove user from session storage and set current user to null
+    sessionStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+}
+
 
 
 }
