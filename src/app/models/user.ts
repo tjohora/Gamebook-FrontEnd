@@ -1,5 +1,13 @@
 export class user{
     userId: number;
+    profileId: number;
     username: string;
-    password: string;
+    email: string;
+    fname: string;
+    lname: string;
+    userType: boolean;
+    address: string;
+    dob: string;
+    active: boolean;
+
 }

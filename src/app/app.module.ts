@@ -13,6 +13,7 @@ import { PostComponent } from './components/post/post.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { AuthGuard } from './components/helpers/auth.guard';
 import { ErrorInterceptor } from './components/helpers/error.interceptor';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 
@@ -24,6 +25,7 @@ import { ErrorInterceptor } from './components/helpers/error.interceptor';
     FooterComponent,
     CommentComponent,
     PostComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,
