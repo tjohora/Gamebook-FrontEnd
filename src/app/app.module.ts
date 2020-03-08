@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 
@@ -12,6 +12,8 @@ import { CommentComponent } from './components/comment/comment.component';
 import { PostComponent } from './components/post/post.component';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { AuthGuard } from './components/helpers/auth.guard';
+import { ErrorInterceptor } from './components/helpers/error.interceptor';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 
 
@@ -24,7 +26,7 @@ import { AuthGuard } from './components/helpers/auth.guard';
     FooterComponent,
     CommentComponent,
     PostComponent,
-    
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,9 @@ import { AuthGuard } from './components/helpers/auth.guard';
     HttpClientModule,
     StorageServiceModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

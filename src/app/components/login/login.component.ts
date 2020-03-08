@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +15,8 @@ export class LoginComponent implements OnInit {
   loginError: any;
 
   constructor(private formBuilder: FormBuilder,
-    private userService: UserService
-
+    private userService: UserService,
+    private router: Router,
     ) {
     
   }
@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   onSubmit(details) {
     this.userService.login(details).subscribe(data => {
       console.log(data)
+      this.router.navigate(['/profile']);
       //saveInSession("key", "val")
       this.loginError = data[0];
       console.log(this.loginError);

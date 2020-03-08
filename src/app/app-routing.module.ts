@@ -8,6 +8,7 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 
 import { AuthGuard } from './components/helpers/auth.guard';
+import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'makePost' , component: PostFormComponent, canActivate: [AuthGuard] },
   { path: 'makeComment' , component: CommentFormComponent, canActivate: [AuthGuard] },
   { path: 'commentList/:postId' , component: CommentListComponent },
+  { path: 'profile' , component: ProfilePageComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 
@@ -24,4 +26,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, CommentListComponent]
+export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, ProfilePageComponent, CommentListComponent]
