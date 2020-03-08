@@ -1,0 +1,16 @@
+<app-post *ngFor = "let post of posts" [post]="post">
+
+</app-post>
+<app-comment-form></app-comment-form>
+<!-- <div *ngIf="???.undefined">
+    <app-comment *ngFor = "let comment of comments" [comment]="comment">
+
+    </app-comment>
+
+</div>
+<div *ngIf="! ???.undefined">
+    Display no posts here message
+</div> -->
+<app-comment *ngFor = "let comment of comments" [comment]="comment">
+
+</app-comment>

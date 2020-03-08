@@ -1,1 +1,17 @@
-<p>comment-form works!</p>
+<form class="w-50 p-2 my-2 border mx-auto" [formGroup]="commentForm" (ngSubmit)="sendComment(commentForm.value)">
+
+    <div class="form-group">
+        <h4>Make Comment</h4>
+        <textarea type="text" class="form-control" id="content" formControlName="content" required
+            maxlength="400"></textarea>
+    </div>
+    <!--change value to userId Stored in session-->
+    <div class="form-group">
+        <input type="hidden" class="form-control" id="userId" formControlName="userId" [ngModel]="25">
+    </div>
+    <div class="form-group">
+        <input type="hidden" class="form-control" id="postId" formControlName="postId" [ngModel]="(postId)">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit Comment</button>
+</form>

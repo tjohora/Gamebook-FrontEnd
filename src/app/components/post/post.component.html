@@ -6,5 +6,6 @@
 
         <p>{{ post.postContent }}</p>
     </div>
-    <!--{{ post.postId }}--><a routerLink="/comment" class="btn btn-link">comment</a>
+     <a [routerLink]="['/commentList', post.postId]">Comments</a>
+    
 </div>

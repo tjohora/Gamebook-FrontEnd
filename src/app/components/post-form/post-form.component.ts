@@ -29,7 +29,6 @@ export class PostFormComponent implements OnInit {
   }
 
   sendPostText(details){
-    console.log(details);
     this.postService.sendPostText(details).subscribe(data => {
       this.postCheck = data;
       if(this.postCheck){

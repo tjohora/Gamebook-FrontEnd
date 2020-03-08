@@ -5,15 +5,18 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { CommentListComponent } from './components/comment-list/comment-list.component';
+
 import { AuthGuard } from './components/helpers/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
+  { path: '', component: HomeComponent},
   { path: 'register' , component: RegisterComponent },
   { path: 'login' , component: LoginComponent },
   { path: 'makePost' , component: PostFormComponent, canActivate: [AuthGuard] },
   { path: 'makeComment' , component: CommentFormComponent, canActivate: [AuthGuard] },
-  { path: '**', redirectTo: 'home' }
+  { path: 'commentList/:postId' , component: CommentListComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
@@ -21,4 +24,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent]
+export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, CommentListComponent]

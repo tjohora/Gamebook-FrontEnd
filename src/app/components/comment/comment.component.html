@@ -1,1 +1,10 @@
-<p>comment works!</p>
+<div class="media w-50 p-3 my-1 border media rounded mx-auto">
+    <img class="d-flex mr-3" src="assets/img/generic-user.png"
+     width="64" height="64" alt="Generic placeholder image">
+    <div class="media-body">
+        <h5 class="mt-0">{{ comment.userName }}</h5>
+        <small>{{ comment.commentDate }}</small>
+        <p>{{ comment.content }}</p>
+    </div>
+    <div><!-- If userId is same as loggin in userId, add delete,edit button--></div>
+</div>

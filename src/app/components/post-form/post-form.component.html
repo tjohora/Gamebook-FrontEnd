@@ -21,11 +21,12 @@
                               <label>Text</label>
                               <textarea type="text" class="form-control" id="postContent" formControlName="postContent" required maxlength="900"></textarea>
                             </div>
+
+                            <!--change value to userId Stored in session-->
                             <div class="form-group">
                                 <input type="hidden" class="form-control" id="userId" formControlName="userId" [ngModel]="25">
                             </div>
                             
-                            <!--change value to userId Stored in session-->
                             <div class="form-group">
                                 <input type="hidden" class="form-control" id="media" formControlName="media" [ngModel]="1">
                             </div>                        

@@ -15,6 +15,7 @@ import { AuthGuard } from './components/helpers/auth.guard';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { AuthGuard } from './components/helpers/auth.guard';
     FooterComponent,
     CommentComponent,
     PostComponent,
+    
   ],
   imports: [
     BrowserModule,

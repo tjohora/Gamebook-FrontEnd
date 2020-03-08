@@ -27,7 +27,4 @@ export class Post {
             this.media = media,
             this.active = active
     }
-
-
-
 }
