@@ -1,17 +1,25 @@
-<form class="w-50 p-2 my-2 border mx-auto" [formGroup]="commentForm" (ngSubmit)="sendComment(commentForm.value)">
+<div>
+    <div *ngIf="userId !== undefined">
+        <form class="w-50 p-2 my-2 border mx-auto" [formGroup]="commentForm"
+            (ngSubmit)="sendComment(commentForm.value)">
+            <div class="form-group">
+                <h4>Make Comment</h4>
+                <textarea type="text" class="form-control" id="content" formControlName="content" required
+                    maxlength="400"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="userId" formControlName="userId" [ngModel]="(userId)">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" id="postId" formControlName="postId" [ngModel]="(postId)">
+            </div>
 
-    <div class="form-group">
-        <h4>Make Comment</h4>
-        <textarea type="text" class="form-control" id="content" formControlName="content" required
-            maxlength="400"></textarea>
+            <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
     </div>
-    <!--change value to userId Stored in session-->
-    <div class="form-group">
-        <input type="hidden" class="form-control" id="userId" formControlName="userId" [ngModel]="25">
+    <div *ngIf="userId == undefined">
+        <div class="alert alert-secondary w-50 my-2 mx-auto" role="alert">
+            <strong>Sign in</strong> to make a comment!
+        </div>
     </div>
-    <div class="form-group">
-        <input type="hidden" class="form-control" id="postId" formControlName="postId" [ngModel]="(postId)">
-    </div>
-
-    <button type="submit" class="btn btn-primary">Submit Comment</button>
-</form>
+</div>
