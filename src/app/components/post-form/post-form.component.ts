@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PostService } from 'src/app/services/post.service';
+import { UserService } from '../../services/user.service';
+
 
 @Component({
   selector: 'app-post-form',
@@ -12,23 +14,35 @@ export class PostFormComponent implements OnInit {
 
   postForm;
   postCheck;
+  userId: number;
+  currentUser = this.authenticationService.currentUserValue;
+  
 
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private postService: PostService) { 
+    private postService: PostService,
+    private authenticationService: UserService
+    ) { 
       this.postForm = this.formBuilder.group({
         userId: '',
         postHeader: ['', Validators.required],
         postContent: ['', Validators.required],
         media: ''
+      
       });
+      
     }
 
+    
+
   ngOnInit() {
+    this.userId = this.currentUser.userId;
   }
 
   sendPostText(details){
+    
+
     this.postService.sendPostText(details).subscribe(data => {
       this.postCheck = data;
       if(this.postCheck){
