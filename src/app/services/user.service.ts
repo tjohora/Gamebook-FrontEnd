@@ -53,6 +53,19 @@ export class UserService {
                   
     }));
   }
+  editUserDetails(details){
+    let reg = this.url + "/editUser"
+    let jsonStr = JSON.stringify(details);
+    return this.http.post<any>(reg, jsonStr).pipe(map(user =>{
+      sessionStorage.setItem('currentUser', JSON.stringify(user));
+      this.currentUserSubject.next(null);
+      this.currentUserSubject.next(user);
+                  
+                  return user;
+
+                  
+    }));
+  }
 
   logout() {
     // remove user from session storage and set current user to null

@@ -46,7 +46,8 @@ export class PostFormComponent implements OnInit {
     this.postService.sendPostText(details).subscribe(data => {
       this.postCheck = data;
       if(this.postCheck){
-        this.router.navigate(['/home']);
+       // this.router.navigate(['/home']);
+       location.reload();
       }else{
         alert('There was a problem with the upload, please try again later.')
       }

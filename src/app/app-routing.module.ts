@@ -6,7 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
-
+import {editProfileComponent} from './components/profile-page/edit-profile/edit-profile.component';
 import { AuthGuard } from './components/helpers/auth.guard';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 
@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'makeComment' , component: CommentFormComponent, canActivate: [AuthGuard] },
   { path: 'commentList/:postId' , component: CommentListComponent },
   { path: 'profile' , component: ProfilePageComponent, canActivate: [AuthGuard] },
+  { path: 'editProfile' , component: editProfileComponent },
   { path: '**', redirectTo: '' }
 ];
 
@@ -26,4 +27,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, ProfilePageComponent, CommentListComponent]
+export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, ProfilePageComponent, CommentListComponent, editProfileComponent]
