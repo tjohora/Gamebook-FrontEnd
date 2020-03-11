@@ -14,7 +14,7 @@ export class CommentFormComponent implements OnInit {
   commentCheck;
   postId;
   userId: number;
-  currentUser = this.authenticationService.currentUserValue;
+  currentUser;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -32,9 +32,13 @@ export class CommentFormComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.postId = +params.get('postId');
-      this.userId = this.currentUser.userId;
     });
+      if(this.authenticationService.currentUserValue !== null){
+        this.currentUser = this.authenticationService.currentUserValue;
+        this.userId = this.currentUser.userId;
+    }
   }
+  
 
   sendComment(details){
     this.postService.postComment(details).subscribe(data => {

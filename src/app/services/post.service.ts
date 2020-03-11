@@ -4,6 +4,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/Post';
 import { TestBed } from '@angular/core/testing';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain'
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +51,11 @@ export class PostService {
   postComment(details){
     let jsonStr = JSON.stringify(details);
     return this.http.post<any>(this.commentUrl, jsonStr);
+  }
+
+  deleteComment(commentID):Observable<any>{
+    let url = this.commentUrl + "/deleteComment/" + commentID;
+    return this.http.put(url, "", httpOptions);
   }
 
 }

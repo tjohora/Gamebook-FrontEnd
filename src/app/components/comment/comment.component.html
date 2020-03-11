@@ -1,10 +1,46 @@
 <div class="media w-50 p-3 my-1 border media rounded mx-auto">
-    <img class="d-flex mr-3" src="assets/img/generic-user.png"
-     width="64" height="64" alt="Generic placeholder image">
+    <img class="d-flex mr-3" src="assets/img/generic-user.png" width="64" height="64" alt="Generic placeholder image">
     <div class="media-body">
         <h5 class="mt-0">{{ comment.userName }}</h5>
         <small>{{ comment.commentDate }}</small>
         <p>{{ comment.content }}</p>
     </div>
-    <div><!-- If userId is same as loggin in userId, add delete,edit button--></div>
+    <div *ngIf="userId !== -1">
+
+        <div *ngIf="userId == (comment.userId)">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary">Edit</button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal"
+                    data-target="#exampleModalCentered">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenteredLabel">Delete comment?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{ comment.content }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <!-- <form [formGroup]="deleteCommentForm" (ngSubmit)="deleteComment(deleteCommentForm.value)">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="commentID" formControlName="commentID" [ngModel]="(comment.commentID)">
+                    </div>  
+                    <button type="submit" class="btn btn-primary">Confirm</button>
+                </form> -->
+                <button type="button" class="btn btn-primary" (click)="deleteComment(comment.commentID)">Confirm</button>
+
+            </div>
+        </div>
+    </div>
 </div>
