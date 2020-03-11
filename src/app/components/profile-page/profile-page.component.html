@@ -1,12 +1,32 @@
-<p>profile-page works! {{userId}}</p>
-
-<p>how does this look</p>
-<div class="grid-container jumbotron">
-    <div class="item1">Header</div>
-    <div class="item2">Profile details</div>
-    <div class="item3">
-        view posts here
-    </div>  
-    <div class="item4"><app-post-form></app-post-form></div>
-    <div class="item5">Footer</div>
+<div class="header">
+    <h1>Welcome {{currentUser.userName}} </h1>
   </div>
+  
+  <div class="menu">
+      <div>
+          <p>Ill change these to display better user details</p>
+          <h3>
+              User Details
+          </h3>
+        <ul>
+            <li>Name: {{currentUser.userName}}</li>
+            <li>Profile Id: {{currentUser.profileId}}</li>
+            <li>User Type: {{currentUser.userType}}</li>
+            <li>User Id: {{currentUser.userId}}</li>
+          </ul>
+      </div>
+      <div>
+         <app-post-form></app-post-form> 
+    </div>
+    
+  </div>
+  
+  <div class="main">
+    
+    <app-post *ngFor = "let post of posts" [post]="post"></app-post>
+  </div>
+  
+
+
+
+
