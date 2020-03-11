@@ -9,6 +9,8 @@ import { CommentListComponent } from './components/comment-list/comment-list.com
 import {editProfileComponent} from './components/profile-page/edit-profile/edit-profile.component';
 import { AuthGuard } from './components/helpers/auth.guard';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -19,6 +21,7 @@ const routes: Routes = [
   { path: 'commentList/:postId' , component: CommentListComponent },
   { path: 'profile' , component: ProfilePageComponent, canActivate: [AuthGuard] },
   { path: 'editProfile' , component: editProfileComponent },
+  { path: 'admin' , component: AdminPageComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 

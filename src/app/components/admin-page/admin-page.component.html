@@ -1,0 +1,88 @@
+<!-- <h2 class="text-center">USERS TABLE</h2>
+<br>
+<table class="table-striped table-hover table-dark">
+    <thead>
+        <tr>
+            <th>User ID</th>
+            <th>User Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let u of users ; let i =index'
+        (click)='rowSelected(i)'
+        [class.active]='i==selectedRow'>
+            <td>{{u.userId}}</td>
+            <td>{{u.username}}</td>
+            <td><button id="remove" (click)="deleteRow(p.postId)">DELETE USER</button></td>
+        </tr>
+    </tbody>
+</table>
+<br>
+
+
+
+ -->
+
+<h2 class=" headers text-center">POSTS TABLE</h2>
+<div class="searchRow text-center font-weight-bold"> Search By Post User Name:  <input type="text" [(ngModel)]="searchText4"> Search By Post Header:  <input type="text" [(ngModel)]="searchText3"></div>
+<br>
+<table class="table tablePosts table-striped table-hover">
+    <thead class="theadPosts">
+        <tr>
+            <th>Post ID </th>
+            <th>User ID</th>
+            <th>User Name</th>
+            <th>Post Header</th>
+            <th>Post Content</th>
+            <th>Date</th>
+            <th>Media</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let p of posts | filterHeaders : searchText3 | filterPostUser : searchText4; let i =index'
+        (click)='rowSelected(i)'
+        [class.active]='i==selectedRow'>
+            <td>{{p.postId}}</td>
+            <td>{{p.userId}}</td>
+            <td>{{p.userName}}</td>
+            <td>{{p.postHeader}}</td>
+            <td>{{p.postContent}}</td>
+            <td>{{p.postDate}}</td> 
+            <td>{{p.media}}</td>
+            <td><button class='btn-outline-dark' id="remove" (click)="deletePost(p.postId)">DELETE POST</button></td> 
+        </tr>
+    </tbody>
+</table>
+<h2 class = "countHeaders text-center" >Total Posts : {{ posts.length }}  </h2>
+<br>
+<h2 class="headers text-center">COMMENTS TABLE</h2> 
+<div class=" searchRow text-center font-weight-bold"> Search By Comments User Name:  <input type="text" [(ngModel)]="searchText2"> Search By Comments Content:  <input type="text" [(ngModel)]="searchText"></div>
+<br>
+<table class="table tablePosts table-striped table-hover">
+    <thead class = "theadPosts">
+        <tr>
+            <th>Comment ID </th>
+            <th>User ID</th>
+            <th>Comment Date</th>
+            <th>Content</th>
+            <th>Post ID</th>
+            <th>User Name</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let c of comments | filterComments : searchText | filterUsers : searchText2; let i =index'
+        (click)='rowSelected(i)'
+        [class.active]='i==selectedRow'>
+            <td>{{c.commentID}}</td>
+            <td>{{c.userId}}</td>
+            <td>{{c.commentDate}}</td>
+            <td>{{c.content}}</td>
+            <td>{{c.postId}}</td>
+            <td>{{c.userName}}</td> 
+            <td><button class='btn-outline-dark' id="remove" (click)="deleteComment(c.commentID)">DELETE COMMENT</button></td>
+        </tr>
+    </tbody>
+</table>
+<h2 class = "countHeaders text-center" >Total Comments : {{ comments.length }} </h2>

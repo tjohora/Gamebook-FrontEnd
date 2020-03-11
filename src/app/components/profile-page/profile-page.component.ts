@@ -9,27 +9,27 @@ import { PostService } from '../../services/post.service';
   styleUrls: ['./profile-page.component.css']
 })
 export class ProfilePageComponent implements OnInit {
-  posts:Post[] = [];
-  
+  posts: Post[] = [];
+
   currentUser = this.authenticationService.currentUserValue;
 
   constructor(
     private authenticationService: UserService,
-    private postService:PostService
+    private postService: PostService
   ) { }
 
   ngOnInit() {
-    
-    
+
+
     this.postService.getPosts().subscribe(posts => {
-      for(var i=0; i<posts.length; i++){
-        
-        if (posts[i].userId==this.currentUser.userId){
-          
+      for (var i = 0; i < posts.length; i++) {
+
+        if (posts[i].userId == this.currentUser.userId) {
+
           this.posts.push(posts[i]);
         }
       }
-      
+
     });
   }
 

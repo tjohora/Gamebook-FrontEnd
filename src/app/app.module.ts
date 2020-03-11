@@ -15,6 +15,11 @@ import { AuthGuard } from './components/helpers/auth.guard';
 import { ErrorInterceptor } from './components/helpers/error.interceptor';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import {editProfileComponent} from './components/profile-page/edit-profile/edit-profile.component';
+import { FilterCommentsPipe } from './filters/filter-comments.pipe';
+import { FilterUsersPipe } from './filters/filter-users.pipe';
+import { FilterHeadersPipe } from './filters/filter-headers.pipe';
+import { FilterPostUserPipe } from './filters/filter-post-user.pipe';
+import { AdminPageComponent } from './components/admin-page/admin-page.component';
 
 
 
@@ -28,6 +33,11 @@ import {editProfileComponent} from './components/profile-page/edit-profile/edit-
     PostComponent,
     ProfilePageComponent,
     editProfileComponent,
+    AdminPageComponent,
+    FilterCommentsPipe,
+    FilterUsersPipe,
+    FilterHeadersPipe,
+    FilterPostUserPipe,
   ],
   imports: [
     BrowserModule,

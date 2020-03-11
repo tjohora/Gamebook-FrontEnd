@@ -10,12 +10,15 @@ const httpOptions = {
   })
 }
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
   postUrl:string = 'http://localhost:8080/Year3Project/webresources/post';
   commentUrl:string = 'http://localhost:8080/Year3Project/webresources/comments';
+
+  posts : Post[] = [];
 
   constructor(private http:HttpClient,
     ) { }
@@ -56,6 +59,31 @@ export class PostService {
   deleteComment(commentID):Observable<any>{
     let url = this.commentUrl + "/deleteComment/" + commentID;
     return this.http.put(url, "", httpOptions);
+  }
+
+  removePost(postId)
+  {
+    console.log("POST ID: " + postId);   
+     let url = this.postUrl + "/deletePost/" + postId;
+     console.log(url);
+     //return this.http.put(this.postUrl,"/deletePost/", postId)
+     return this.http.put(url,this.posts);
+    // let jsonStr = JSON.stringify(postId);
+    // console.log("String: " + jsonStr)
+    // return this.http.put<any>(this.postUrl, jsonStr);
+  }
+
+  removeComment(commentId)
+   {
+     console.log("Comment ID: " + commentId);
+      let url = this.commentUrl + "/deleteComment/" + commentId;
+      console.log(url);
+      return this.http.get<Comment[]>(url);
+      //return this.http.put(this.commentUrl,"/deleteComment/", commentId)
+  }
+
+  getComments():Observable<Comment[]> {
+    return this.http.get<Comment[]>(this.commentUrl);
   }
 
 }
