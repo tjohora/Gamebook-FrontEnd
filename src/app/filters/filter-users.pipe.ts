@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Comment } from '../models/Comment';
+import { user } from '../models/user';
 
 @Pipe({
   name: 'filterUsers'
@@ -11,7 +12,6 @@ export class FilterUsersPipe implements PipeTransform {
     if(!searchText2) return items;
     
     searchText2 = searchText2.toLowerCase();
-    return items.filter( (c : Comment) => {return c.userName.toLowerCase().includes(searchText2)});
+    return items.filter( (u : user) => {return u.userName.toLowerCase().includes(searchText2)});
   }
-
 }

@@ -4,6 +4,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { user } from '../models/user';
 import { map } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain'
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -66,6 +72,15 @@ export class UserService {
     this.currentUserSubject.next(null);
   }
 
+  getUsers(): Observable<user[]> {
+    console.log("URL: " + this.url);
+    return this.http.get<user[]>(this.url + "/getAllUsers");
+  }
 
+  removeUser(userId) {
+    let url = this.url + "/deleteUser/" + userId;
+    this.http.put(url, "", httpOptions).subscribe();
+    window.location.reload();
+  }
 
 }
