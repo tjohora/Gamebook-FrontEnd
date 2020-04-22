@@ -74,6 +74,15 @@ export class UserService {
     this.currentUserSubject.next(null);
 }
 
+  getUsers(): Observable<user[]> {
+    console.log("URL: " + this.url);
+    return this.http.get<user[]>(this.url + "/getAllUsers");
+  }
 
+  removeUser(userId) {
+    let url = this.url + "/deleteUser/" + userId;
+    this.http.put(url, "", httpOptions).subscribe();
+    window.location.reload();
+  }
 
 }
