@@ -4,6 +4,12 @@ import { BehaviorSubject, Observable  } from 'rxjs';
 import {user} from '../models/user';
 import { map } from 'rxjs/operators';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'text/plain'
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
