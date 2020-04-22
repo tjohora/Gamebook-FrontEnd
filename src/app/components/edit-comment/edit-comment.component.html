@@ -1,1 +1,19 @@
-<p>edit-comment works!</p>
+<!-- <div *ngFor="let comment of comments"> -->
+    <form class="w-50 p-2 my-2 border mx-auto" [formGroup]="editCommentForm"
+        (ngSubmit)="sendEditComment(editCommentForm.value)">
+        <div class="form-group">
+            <h4>Edit Comment</h4>
+            <textarea type="text" class="form-control" id="content" formControlName="content" required
+                maxlength="400"></textarea>
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" id="userId" formControlName="userId" [ngModel]="(userId)">
+        </div>
+        <div class="form-group">
+            <input type="hidden" class="form-control" id="postId" formControlName="postId" [ngModel]="(postId)">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Edit</button>
+    </form>
+
+<!-- </div> -->

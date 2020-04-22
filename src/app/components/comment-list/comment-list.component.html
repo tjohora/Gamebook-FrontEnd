@@ -2,15 +2,11 @@
 
 </app-post>
 <app-comment-form></app-comment-form>
-<!-- <div *ngIf="???.undefined">
+<div *ngIf="!(( NoOfComments )) || (( NoOfComments )) == 0">
+    <h2 style="text-align: center">No Comments!(Yet..)</h2>
+</div>
+<div *ngIf="(( NoOfComments )) > 0">
     <app-comment *ngFor = "let comment of comments" [comment]="comment">
 
     </app-comment>
-
 </div>
-<div *ngIf="! ???.undefined">
-    Display no posts here message
-</div> -->
-<app-comment *ngFor = "let comment of comments" [comment]="comment">
-
-</app-comment>

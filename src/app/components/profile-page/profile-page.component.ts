@@ -12,6 +12,7 @@ export class ProfilePageComponent implements OnInit {
   posts: Post[] = [];
   users : user[] = [];
   user : user;
+  noOfPosts : number = 0;
 
   currentUser = this.authenticationService.currentUserValue;
 
@@ -41,6 +42,8 @@ export class ProfilePageComponent implements OnInit {
         if (posts[i].userId == this.currentUser.userId) {
 
           this.posts.push(posts[i]);
+
+          this.noOfPosts++;
         }
       }
 

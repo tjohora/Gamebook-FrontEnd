@@ -33,15 +33,6 @@ export class PostService {
     return this.http.post<any>(this.postUrl, jsonStr);
   };
 
-  sendPostUpload(details){
-
-  };
-
-  sendPostLink(details){
-
-  };
-  
-
   getOnePost(postId){
     let url = this.postUrl + "/onePost/" + postId;
     return this.http.get<Post[]>(url);
@@ -62,7 +53,7 @@ export class PostService {
     return this.http.put(url, "", httpOptions);
   }
 
-    removePost(postId)
+  removePost(postId)
   {   
     let url = this.postUrl + "/deletePost/" + postId;
     this.http.put(url,"",httpOptions).subscribe();
@@ -89,6 +80,16 @@ export class PostService {
   updatePost(details, postId):Observable<any> {
     let url = this.postUrl + "/updatePost/" + postId;
     return this.http.put(url, details, httpOptions);
+  }
+
+  updateComment(details, commentId):Observable<any> {
+    let url = this.commentUrl + "/updateComment/" + commentId;
+    return this.http.put(url, details, httpOptions);
+  }
+
+  getOneComment(commentId){
+    let url = this.postUrl + "/oneComment/" + commentId;
+    return this.http.get<Comment[]>(url);
   }
 
 }
