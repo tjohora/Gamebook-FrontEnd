@@ -15,6 +15,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PostService {
+  
   postUrl:string = 'http://localhost:8080/Year3Project/webresources/post';
   commentUrl:string = 'http://localhost:8080/Year3Project/webresources/comments';
 
@@ -84,6 +85,17 @@ export class PostService {
 
   getComments():Observable<Comment[]> {
     return this.http.get<Comment[]>(this.commentUrl);
+  }
+
+  deletePost(postId)
+  {
+    let url = this.postUrl + "/deletePost/" + postId;
+    return this.http.put(url, "", httpOptions);
+  }
+
+  updatePost(details, postId):Observable<any> {
+    let url = this.postUrl + "/updatePost/" + postId;
+    return this.http.put(url, details, httpOptions);
   }
 
 }

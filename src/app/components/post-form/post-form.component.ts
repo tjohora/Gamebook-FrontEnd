@@ -13,6 +13,8 @@ import { UserService } from '../../services/user.service';
 export class PostFormComponent implements OnInit {
 
   postForm;
+  postForm2;
+  postForm3;
   postCheck;
   userId: number;
   currentUser = this.authenticationService.currentUserValue;
@@ -28,11 +30,10 @@ export class PostFormComponent implements OnInit {
         userId: '',
         postHeader: ['', Validators.required],
         postContent: ['', Validators.required],
-        media: ''
-      
+        media: ''      
       });
-      
     }
+    
 
     
 
@@ -41,17 +42,13 @@ export class PostFormComponent implements OnInit {
   }
 
   sendPostText(details){
-    
-
     this.postService.sendPostText(details).subscribe(data => {
       this.postCheck = data;
       if(this.postCheck){
-       // this.router.navigate(['/home']);
-       location.reload();
+        this.router.navigate(['']);
       }else{
         alert('There was a problem with the upload, please try again later.')
       }
     })
   };
-
 }

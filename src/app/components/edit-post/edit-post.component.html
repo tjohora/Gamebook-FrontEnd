@@ -1,0 +1,26 @@
+<div *ngFor = "let post of posts">
+    <form [formGroup]="editPostForm" (ngSubmit)="sendEditPostForm(editPostForm.value)">
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" class="form-control" id="postHeader" formControlName="postHeader" required maxlength="100" value="{{ post.postHeader }}">
+          <small class="form-text text-muted">Please keep it child friendly!</small>
+        </div>
+        <div class="form-group">
+          <label>Text</label>
+          <textarea type="text" class="form-control" id="postContent" formControlName="postContent" required maxlength="900" value="{{ post.postContent }}"></textarea>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" class="form-control" id="userId" formControlName="userId" [ngModel]="(userId)">
+        </div>
+        
+        <div class="form-group">
+            <input type="hidden" class="form-control" id="media" formControlName="media" [ngModel]="1">
+        </div>                        
+        <button type="submit" class="btn btn-primary">Confirm Edit</button>
+    </form>
+</div>
+
+
+    
+

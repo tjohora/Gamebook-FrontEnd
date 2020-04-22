@@ -10,6 +10,8 @@ import {editProfileComponent} from './components/profile-page/edit-profile/edit-
 import { AuthGuard } from './components/helpers/auth.guard';
 import { ProfilePageComponent } from './components/profile-page/profile-page.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
+import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'profile' , component: ProfilePageComponent, canActivate: [AuthGuard] },
   { path: 'editProfile' , component: editProfileComponent },
   { path: 'admin' , component: AdminPageComponent, canActivate: [AuthGuard] },
+  { path: 'editComment/:commentId' , component: EditCommentComponent, canActivate: [AuthGuard] },
+  { path: 'editPost/:postId' , component: EditPostComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];
 
@@ -30,4 +34,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, ProfilePageComponent, CommentListComponent, editProfileComponent]
+export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, ProfilePageComponent, CommentListComponent, editProfileComponent, EditCommentComponent, EditPostComponent]

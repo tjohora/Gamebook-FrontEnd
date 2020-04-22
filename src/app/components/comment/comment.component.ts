@@ -19,7 +19,7 @@ export class CommentComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, 
     private authenticationService: UserService,
-    private postService: PostService,)
+    private postService: PostService)
    {this.deleteCommentForm = this.formBuilder.group({
     commentID: ''
   });

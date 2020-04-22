@@ -2,10 +2,26 @@
     <div class="media-body">
         <h4 class="mt-0">{{ post.postHeader }}</h4>
         <!--{{ post.userId }}--><p>Posted by<a routerLink="/user" class="btn btn-link">{{ post.userName }}</a></p>
+        <div *ngIf="userId !== -1">
+            <div *ngIf="userId == (post.userId)">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary"><a class="nav-link" [routerLink]="['/editPost', post.postId]" style="color:white">Edit</a></button>
+                    <button type="button" class="btn btn-danger" (click)="deletePost(post.postId)">Delete</button>
+                </div>
+            </div>
+        </div>
         <small class="font-weight-lighter">{{ post.postDate }}</small>
-
-        <p>{{ post.postContent }}</p>
+        <div *ngIf="(( post.media )) == 1">
+            <p>{{ post.postContent }}</p>
+        </div>
+        <div *ngIf="( post.media ) == 2">
+            <p>{{ post.postContent }}</p>
+        </div>
+        <div *ngIf="( post.media ) == 3">
+            <iframe width="560" height="315" src="(( post.postContent ))" frameborder="0">
+            </iframe> 
+        </div>
     </div>
+    <br>
      <a [routerLink]="['/commentList', post.postId]">Comments</a>
-    
 </div>
