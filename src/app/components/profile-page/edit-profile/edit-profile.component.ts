@@ -48,7 +48,7 @@ export class editProfileComponent implements OnInit {
 
       if (this.editCheck) {
 
-        
+        this.router.navigate(['/profile']);
       } else {
         alert('There was a problem with the upload, please try again later.')
       }
