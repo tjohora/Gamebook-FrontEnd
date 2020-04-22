@@ -1,49 +1,32 @@
-<div class="header">
+<div class="container-fluid">
   <h1>Welcome {{currentUser.userName}} </h1>
-</div>
+  <div class="row">
 
-
-
-<div class="container-fluid border border-secondary">
-  <h1></h1>
-  
-  <div class="container-fluid">
-    <div class="row">
-      
-      <div class="col-3 border-right">
-        <div class="card">
-          <img src="assets/img/luffy.png" alt="John" style="width:100%">
-          <h1>{{currentUser.userName}}</h1>
-          <p class="title">{{currentUser.fname}} {{currentUser.lname}}</p>
-          <p>{{currentUser.dob}}</p>
-          <p>{{currentUser.address}}</p>
-          <div style="margin: 24px 0;">
-            <a href="#"><i class="fa fa-dribbble"></i></a> 
-            <a href="#"><i class="fa fa-twitter"></i></a>  
-            <a href="#"><i class="fa fa-linkedin"></i></a>  
-            <a href="#"><i class="fa fa-facebook"></i></a> 
-          </div>
-          <p><button routerLink="/editProfile">Edit Profile</button></p>
+    <div class="col-sm-3 border-right border-top border-bottom">
+      <div class=" card">
+        <img src="assets/img/luffy.png" alt="John" style="width:100%">
+        <h1>{{currentUser.userName}}</h1>
+        <p class="title">{{currentUser.fname}} {{currentUser.lname}}</p>
+        <p>{{currentUser.dob}}</p>
+        <p>{{currentUser.address}}</p>
+        <div style="margin: 24px 0;">
+          <a href="#"><i class="fa fa-dribbble"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-linkedin"></i></a>
+          <a href="#"><i class="fa fa-facebook"></i></a>
         </div>
-
-
-
-
-        <div class="">
-          
-          
-        </div>
-        <div class="rounded">
-          <app-post-form></app-post-form>
-        </div>
-        
-      </div>
-      <div class="col-9 ">
-        <app-post *ngFor="let post of posts" [post]="post"></app-post>
+        <p><button routerLink="/editProfile">Edit Profile</button></p>
       </div>
     </div>
+
+
+    <div class="col-sm-6 border-right border-left border-top border-bottom">
+      <h3>Your Posts</h3>
+      <app-post *ngFor="let post of posts" [post]="post"></app-post>
+    </div>
+
+
+    <div class="col-sm-3 border-left border-top border-bottom">
+      <app-post-form></app-post-form>
+    </div>
   </div>
-</div>
-
-
-
