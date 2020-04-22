@@ -7,14 +7,15 @@ import { Router } from '@angular/router';
   selector: 'app-editProfile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
-  
+
 })
 export class editProfileComponent implements OnInit {
   //items;
+  userId: number;
   editProfileForm;
   editCheck: boolean;
+  currentUser = this.userService.currentUserValue;
 
-  
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -23,23 +24,34 @@ export class editProfileComponent implements OnInit {
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       address: ['', Validators.required],
-      dob: ['', Validators.required]
+      dob: ['', Validators.required],
+      userId: [this.currentUser.userId]
     });
   }
 
   ngOnInit() {
-
+    
   }
 
-  onSubmit(details) {
+  get f() { return this.editProfileForm.controls; }
 
-                    this.userService.editUserDetails(details).subscribe(data => {
-                    this.editCheck = data;
-                    if(this.editCheck){
-            
-                    location.reload();
-                    }else{
-                    alert('There was a problem with the upload, please try again later.')
-                    }
-                    })};
+  onSubmit(details) {
+    console.log(details);
+    this.userService.editUserDetails(details).subscribe(data => {
+
+      this.editCheck = data;
+
+      this.currentUser.fname = this.f.fname.value;
+      this.currentUser.lname = this.f.lname.value;
+      this.currentUser.address = this.f.address.value;
+      this.currentUser.dob = this.f.dob.value;
+
+      if (this.editCheck) {
+
+        this.router.navigate(['/profile']);
+      } else {
+        alert('There was a problem with the upload, please try again later.')
+      }
+    })
+  };
 }

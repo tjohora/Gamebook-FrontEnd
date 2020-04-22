@@ -62,25 +62,18 @@ export class PostService {
     return this.http.put(url, "", httpOptions);
   }
 
-  removePost(postId)
-  {
-    console.log("POST ID: " + postId);   
-     let url = this.postUrl + "/deletePost/" + postId;
-     console.log(url);
-     //return this.http.put(this.postUrl,"/deletePost/", postId)
-     return this.http.put(url,this.posts);
-    // let jsonStr = JSON.stringify(postId);
-    // console.log("String: " + jsonStr)
-    // return this.http.put<any>(this.postUrl, jsonStr);
+    removePost(postId)
+  {   
+    let url = this.postUrl + "/deletePost/" + postId;
+    this.http.put(url,"",httpOptions).subscribe();
+    window.location.reload();
   }
 
   removeComment(commentId)
-   {
-     console.log("Comment ID: " + commentId);
-      let url = this.commentUrl + "/deleteComment/" + commentId;
-      console.log(url);
-      return this.http.get<Comment[]>(url);
-      //return this.http.put(this.commentUrl,"/deleteComment/", commentId)
+  {
+    let url = this.commentUrl + "/deleteComment/" + commentId;
+    this.http.put(url,"",httpOptions).subscribe();
+    window.location.reload();
   }
 
   getComments():Observable<Comment[]> {

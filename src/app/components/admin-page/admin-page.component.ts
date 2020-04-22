@@ -21,18 +21,15 @@ export class AdminPageComponent implements OnInit {
   comments : Comment[] = [];
   selectedRow;
   numPosts : number;
+  toggle: boolean = true;
 
   constructor(private postService : PostService, private userService : UserService) {
 
   }
 
    ngOnInit() {
-  //   this.userService.getUsers().subscribe( data =>
-  //     {
-  //       console.log(data);
-  //       this.users = data;
-  //     });
-  
+
+  this.toggle = localStorage.getItem('myKey') == 'true';
 
     this.postService.getPosts().subscribe( data => 
       {
@@ -46,8 +43,15 @@ export class AdminPageComponent implements OnInit {
         console.log(data);
         this.comments = data;
       });
+      
+      this.userService.getUsers().subscribe( data =>
+        {
+          console.log(data);
+          this.users = data;
+        }); 
   }
 
+  
   rowSelected(i : number)
    {
    this.selectedRow = i;
@@ -56,11 +60,21 @@ export class AdminPageComponent implements OnInit {
 
    deletePost(id : number){
      console.log("ID: " + id);
-      this.postService.removePost(id);//.subscribe();
+      this.postService.removePost(id);
   }
 
   deleteComment(id : number){
     console.log("ID: " + id);
      this.postService.removeComment(id);
  }
+
+ deleteUser(id : number){
+  console.log("ID: " + id);
+   this.userService.removeUser(id);
+}
+
+ change() {
+  this.toggle = !this.toggle;
+  localStorage.setItem('myKey', JSON.stringify(this.toggle));
+  }
 }

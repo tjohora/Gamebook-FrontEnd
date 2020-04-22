@@ -10,6 +10,8 @@ import { PostService } from '../../services/post.service';
 })
 export class ProfilePageComponent implements OnInit {
   posts: Post[] = [];
+  users : user[] = [];
+  user : user;
 
   currentUser = this.authenticationService.currentUserValue;
 
@@ -20,10 +22,22 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit() {
 
+    this.authenticationService.getUsers().subscribe( data =>
+      {
+        console.log(data);
+        this.users = data;
+        data.forEach(element => {
+          if(element.userId == this.currentUser.userId){
+            this.currentUser = element;
+          }
+        });
+      });
+    
+
 
     this.postService.getPosts().subscribe(posts => {
       for (var i = 0; i < posts.length; i++) {
-
+        
         if (posts[i].userId == this.currentUser.userId) {
 
           this.posts.push(posts[i]);
