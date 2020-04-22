@@ -23,7 +23,7 @@ export class ProfilePageComponent implements OnInit {
 
     this.postService.getPosts().subscribe(posts => {
       for (var i = 0; i < posts.length; i++) {
-
+        
         if (posts[i].userId == this.currentUser.userId) {
 
           this.posts.push(posts[i]);

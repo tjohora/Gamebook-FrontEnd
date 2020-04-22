@@ -30,17 +30,25 @@ export class editProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userId = this.currentUser.userId;
+    
   }
+
+  get f() { return this.editProfileForm.controls; }
 
   onSubmit(details) {
     console.log(details);
     this.userService.editUserDetails(details).subscribe(data => {
+
       this.editCheck = data;
+
+      this.currentUser.fname = this.f.fname.value;
+      this.currentUser.lname = this.f.lname.value;
+      this.currentUser.address = this.f.address.value;
+      this.currentUser.dob = this.f.dob.value;
 
       if (this.editCheck) {
 
-        location.reload();
+        
       } else {
         alert('There was a problem with the upload, please try again later.')
       }

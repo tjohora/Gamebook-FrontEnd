@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient,  } from '@angular/common/http';
-import { BehaviorSubject, Observable  } from 'rxjs';
-import {user} from '../models/user';
+import { HttpHeaders, HttpClient, } from '@angular/common/http';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { user } from '../models/user';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -14,8 +14,8 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<user>(JSON.parse(sessionStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
-   }
+    this.currentUser = this.currentUserSubject.asObservable();
+  }
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -25,54 +25,46 @@ export class UserService {
 
   public get currentUserValue(): user {
     return this.currentUserSubject.value;
-}
+  }
 
   url: string = "http://localhost:8080/Year3Project/webresources/user";
 
-  register(details){
+  register(details) {
     let reg = this.url + "/register"
     let jsonStr = JSON.stringify(details);
     console.log(jsonStr);
     return this.http.post<any>(reg, jsonStr).pipe(map(user => {
       sessionStorage.setItem('currentUser', JSON.stringify(user));
-                  this.currentUserSubject.next(user);
-                  return user;
+      this.currentUserSubject.next(user);
+      return user;
     }));
   }
 
-  login(details){
+  login(details) {
     let reg = this.url + "/login"
     let jsonStr = JSON.stringify(details);
     console.log(jsonStr);
-    return this.http.post<any>(reg, jsonStr).pipe(map(user =>{
+    return this.http.post<any>(reg, jsonStr).pipe(map(user => {
       sessionStorage.setItem('currentUser', JSON.stringify(user));
-                  this.currentUserSubject.next(user);
-                  
-                  return user;
+      this.currentUserSubject.next(user);
 
-                  
+      return user;
+
+
     }));
   }
-  editUserDetails(details){
+  editUserDetails(details) {
     let reg = this.url + "/editUser"
     let jsonStr = JSON.stringify(details);
     console.log(jsonStr);
-    return this.http.post<any>(reg, jsonStr).pipe(map(user =>{
-      sessionStorage.setItem('currentUser', JSON.stringify(user));
-      this.currentUserSubject.next(null);
-      this.currentUserSubject.next(user);
-                  
-                  return user;
-
-                  
-    }));
+    return this.http.post<any>(reg, jsonStr);
   }
 
   logout() {
     // remove user from session storage and set current user to null
     sessionStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-}
+  }
 
 
 
