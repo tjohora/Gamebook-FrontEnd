@@ -56,6 +56,7 @@ export class UserService {
   editUserDetails(details){
     let reg = this.url + "/editUser"
     let jsonStr = JSON.stringify(details);
+    console.log(jsonStr);
     return this.http.post<any>(reg, jsonStr).pipe(map(user =>{
       sessionStorage.setItem('currentUser', JSON.stringify(user));
       this.currentUserSubject.next(null);

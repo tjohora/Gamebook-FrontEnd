@@ -7,14 +7,15 @@ import { Router } from '@angular/router';
   selector: 'app-editProfile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
-  
+
 })
 export class editProfileComponent implements OnInit {
   //items;
+  userId: number;
   editProfileForm;
   editCheck: boolean;
+  currentUser = this.userService.currentUserValue;
 
-  
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -23,23 +24,26 @@ export class editProfileComponent implements OnInit {
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       address: ['', Validators.required],
-      dob: ['', Validators.required]
+      dob: ['', Validators.required],
+      userId: [this.currentUser.userId]
     });
   }
 
   ngOnInit() {
-
+    this.userId = this.currentUser.userId;
   }
 
   onSubmit(details) {
+    console.log(details);
+    this.userService.editUserDetails(details).subscribe(data => {
+      this.editCheck = data;
 
-                    this.userService.editUserDetails(details).subscribe(data => {
-                    this.editCheck = data;
-                    if(this.editCheck){
-            
-                    location.reload();
-                    }else{
-                    alert('There was a problem with the upload, please try again later.')
-                    }
-                    })};
+      if (this.editCheck) {
+
+        location.reload();
+      } else {
+        alert('There was a problem with the upload, please try again later.')
+      }
+    })
+  };
 }
