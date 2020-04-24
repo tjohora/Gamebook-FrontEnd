@@ -18,7 +18,7 @@
     .toggleText{
         font-size: 20px;
         color:black;
-        padding-left: 10px;
+        margin-right: 10px;
     }
 
     .toggle {
@@ -69,19 +69,20 @@
         left: 32px;
       }
 
-      .adminDiv{
+      /* .adminDiv{
         padding-left: 10px;
         padding-bottom: 50px ;
         min-width: 1366px;
-      }
+      } */
 
-      .test{
+      /* .test{
+        border-top-style: double;
         position: static;
-        border-right-style: double;  
         border-bottom-style: double;    
       }
 
       .test2{
+        border-top-style: double;
         position: static;
         border-bottom-style: double;
         border-spacing: 10px;    
@@ -89,15 +90,10 @@
 
       .test3{
         position: static;
-        border-bottom-style: double;
-        border-spacing: 10px;    
-      }
-
-      .test3{
         border-top-style: double;
         border-bottom-style: double;
         border-spacing: 10px;    
-      }
+      } */
 
       .collapseBtn{
         color: white;
@@ -105,7 +101,19 @@
         margin-bottom: 10px;
       }
 
-      .well {
+      /* .well {
         overflow:scroll;
         height:500px;
+    } */
+
+    ul li{
+      display: inline-block;
+      margin: 10px;
+      font-size: 20px;
     }
+
+    #myTab > li:last-child{
+      float:right;
+    }
+
+
