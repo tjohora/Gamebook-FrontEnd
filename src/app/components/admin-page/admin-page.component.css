@@ -1,19 +1,19 @@
 
-    .tablePosts{ background-color: rgb(14, 131, 4); border-radius: 5px;}   
-    .theadPosts{ background-color: grey; border-radius: 5px;}
+    .tablePosts{background-color:rgb(14, 131, 4); border-radius: 5px;}   
+    .theadPosts{ background-color: black; border-radius: 5px;}
     .searchRow{font-style: oblique; color: black; background-color:rgb(14, 131, 4); border-radius: 5px;}
     .headers{color:black}
-    .countHeaders{color: black; background-color: grey; border-radius: 5px;}
-    .theadFont{color:black; border-radius: 5px;}
+    .countHeaders{color: rgb(14, 131, 4); background-color: black; border-radius: 5px;}
+    .theadFont{color : rgb(14, 131, 4); border-radius: 5px;}
     .dataFont{color: black}
 
     .tablePosts2{ background-color: rgb(218, 122, 12); border-radius: 5px;}
     .theadPosts2{ background-color: black; border-radius: 5px;}
-    .searchRow2{font-style: oblique; color: white; background-color:rgb(218, 122, 12); border-radius: 5px;}
+    .searchRow2{font-style: oblique; color: black; background-color:rgb(218, 122, 12); border-radius: 5px;}
     .headers2{color:rgb(214, 202, 34)}
-    .countHeaders2{color: white;  background-color: black; border-radius: 5px;}
-    .theadFont2{color:white; border-radius: 5px;}
-    .dataFont2{color: white}
+    .countHeaders2{color: rgb(218, 122, 12);  background-color: black; border-radius: 5px;}
+    .theadFont2{color:rgb(218, 122, 12); border-radius: 5px;}
+    .dataFont2{color: black}
 
     .toggleText{
         font-size: 20px;

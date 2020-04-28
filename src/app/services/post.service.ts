@@ -16,8 +16,8 @@ const httpOptions = {
 })
 export class PostService {
   
-  postUrl:string = 'http://localhost:8080/Year3Project/webresources/post';
-  commentUrl:string = 'http://localhost:8080/Year3Project/webresources/comments';
+  postUrl:string = 'http://localhost:25876/Year3Project/webresources/post';
+  commentUrl:string = 'http://localhost:25876/Year3Project/webresources/comments';
 
   posts : Post[] = [];
 
