@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/Post';
 import { TestBed } from '@angular/core/testing';
+import { rating } from '../models/rating';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -16,8 +17,10 @@ const httpOptions = {
 })
 export class PostService {
   
-  postUrl:string = 'http://localhost:25876/Year3Project/webresources/post';
-  commentUrl:string = 'http://localhost:25876/Year3Project/webresources/comments';
+  postUrl:string = 'http://localhost:8080/Year3Project/webresources/post';
+  commentUrl:string = 'http://localhost:8080/Year3Project/webresources/comments';
+  ratingUrl:string = 'http://localhost:8080/Year3Project/webresources/Rating';
+
 
   posts : Post[] = [];
 
@@ -90,6 +93,21 @@ export class PostService {
   getOneComment(commentId){
     let url = this.postUrl + "/oneComment/" + commentId;
     return this.http.get<Comment[]>(url);
+  }
+
+  ratePost(details){
+    let url = this.ratingUrl + "/updateRating"
+    return this.http.post<any>(url, details);
+  }
+
+  getRatings(){
+    let url = this.ratingUrl + "/getAllPostRatings";
+    return this.http.get<rating>(url);
+  }
+
+  getRatingOfPost(postId){
+    let url = this.ratingUrl + "/getRatingByPostID/" + postId;
+    return this.http.get<rating[]>(url);
   }
 
 }
