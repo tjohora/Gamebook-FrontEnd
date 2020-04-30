@@ -33,7 +33,7 @@ export class UserService {
     return this.currentUserSubject.value;
   }
 
-  url: string = "http://localhost:8080/Year3Project/webresources/user";
+  url: string = "http://localhost:25876/Year3Project/webresources/user";
 
   register(details) {
     let reg = this.url + "/register"

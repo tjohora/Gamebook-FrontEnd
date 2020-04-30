@@ -1,33 +1,11 @@
 <div class="w-50 p-3 border media rounded mx-auto">
     <div class="media-body">
-
-        <li class="list-group-item" style="float: left; border: none">
-            <i class="glyphicon glyphicon-arrow-up" (click)="rating(currentUser.userId, post.postId, 1)"><img width="20px" height="20px" src="../../../assets/img/thumbs_up2.png"> </i>
-
-            <div *ngIf="!ratingsMap.has(post.postId)">
-                <span class="label label-primary">0</span>
-            </div>
-            <div *ngIf="ratingsMap.has(post.postId)">
-                <span class="label label-primary">{{ ratingsMap.get(post.postId) }}</span>
-            </div>
-
-            <i class="glyphicon glyphicon-chevron-down" (click)="rating(currentUser.userId, post.postId, -1)"><img width="20px" height="20px" src="../../../assets/img/thumbs_down.jpg"></i>
-        </li>
-
         <h4 class="mt-0">{{ post.postHeader }}</h4>
-        <div *ngIf="post.userName == 'Deleted'">
-            <p>Posted by <i>[{{ post.userName }}]</i></p>
-        </div>
-        <div *ngIf="post.userName != 'Deleted'">
-            <!--{{ post.userId }}-->
-            <p>Posted by<a routerLink="/user" class="btn btn-link">{{ post.userName }}</a></p>
-        </div>
-
+        <!--{{ post.userId }}--><p>Posted by<a routerLink="/user" class="btn btn-link">{{ post.userName }}</a></p>
         <div *ngIf="userId !== -1">
             <div *ngIf="userId == (post.userId)">
                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary"><a class="nav-link"
-                            [routerLink]="['/editPost', post.postId]" style="color:white">Edit</a></button>
+                    <button type="button" class="btn btn-secondary"><a class="nav-link" [routerLink]="['/editPost', post.postId]" style="color:white">Edit</a></button>
                     <button type="button" class="btn btn-danger" (click)="deletePost(post.postId)">Delete</button>
                 </div>
             </div>
@@ -41,9 +19,9 @@
         </div>
         <div *ngIf="( post.media ) == 3">
             <iframe width="560" height="315" src="(( post.postContent ))" frameborder="0">
-            </iframe>
+            </iframe> 
         </div>
     </div>
     <br>
-    <a [routerLink]="['/commentList', post.postId]">Comments</a>
+     <a [routerLink]="['/commentList', post.postId]">Comments</a>
 </div>
