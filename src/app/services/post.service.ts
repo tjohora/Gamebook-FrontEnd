@@ -3,13 +3,10 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/Post';
 import { TestBed } from '@angular/core/testing';
-<<<<<<< HEAD
 import { UserService } from '../services/user.service';
 
 
-=======
 import { rating } from '../models/rating';
->>>>>>> 6a86885576a94a4153d0a4d7a9956f6dc4807142
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,10 +19,10 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PostService {
-<<<<<<< HEAD
   currentUser = this.authenticationService.currentUserValue;
   postUrl: string = 'http://localhost:8080/Year3Project/webresources/post';
   commentUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
+  ratingUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
   imageUrl: string = null;
   postImage: File = null;
   posts: Post[] = [];
@@ -35,20 +32,6 @@ export class PostService {
   ) { }
 
   getPosts(): Observable<Post[]> {
-=======
-  
-  postUrl:string = 'http://localhost:8080/Year3Project/webresources/post';
-  commentUrl:string = 'http://localhost:8080/Year3Project/webresources/comments';
-  ratingUrl:string = 'http://localhost:8080/Year3Project/webresources/Rating';
-
-
-  posts : Post[] = [];
-
-  constructor(private http:HttpClient,
-    ) { }
-
-  getPosts():Observable<Post[]> {
->>>>>>> 6a86885576a94a4153d0a4d7a9956f6dc4807142
     return this.http.get<Post[]>(this.postUrl);
   }
 
@@ -113,7 +96,6 @@ export class PostService {
     return this.http.get<Comment[]>(url);
   }
 
-<<<<<<< HEAD
   uploadImage(image) {
     this.postImage = image;
     let url = this.postUrl + "/upload/";
@@ -126,9 +108,8 @@ export class PostService {
     
     this.http.post<any>(url, file).subscribe(res=>{
       console.log(res);
-    });
+    })}
 
-=======
   ratePost(details){
     let url = this.ratingUrl + "/updateRating"
     return this.http.post<any>(url, details);
@@ -142,7 +123,6 @@ export class PostService {
   getRatingOfPost(postId){
     let url = this.ratingUrl + "/getRatingByPostID/" + postId;
     return this.http.get<rating[]>(url);
->>>>>>> 6a86885576a94a4153d0a4d7a9956f6dc4807142
   }
 
 }
