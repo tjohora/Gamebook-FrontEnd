@@ -3,13 +3,10 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/Post';
 import { TestBed } from '@angular/core/testing';
-<<<<<<< HEAD
 import { UserService } from '../services/user.service';
 
 
 import { rating } from '../models/rating';
-=======
->>>>>>> parent of 6a86885... Post rating system implemented. needs improving
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,11 +19,10 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PostService {
-<<<<<<< HEAD
   currentUser = this.authenticationService.currentUserValue;
   postUrl: string = 'http://localhost:8080/Year3Project/webresources/post';
   commentUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
-  ratingUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
+  ratingUrl: string = 'http://localhost:8080/Year3Project/webresources/Rating';
   imageUrl: string = null;
   postImage: File = null;
   posts: Post[] = [];
@@ -36,18 +32,6 @@ export class PostService {
   ) { }
 
   getPosts(): Observable<Post[]> {
-=======
-  
-  postUrl:string = 'http://localhost:25876/Year3Project/webresources/post';
-  commentUrl:string = 'http://localhost:25876/Year3Project/webresources/comments';
-
-  posts : Post[] = [];
-
-  constructor(private http:HttpClient,
-    ) { }
-
-  getPosts():Observable<Post[]> {
->>>>>>> parent of 6a86885... Post rating system implemented. needs improving
     return this.http.get<Post[]>(this.postUrl);
   }
 
@@ -112,7 +96,6 @@ export class PostService {
     return this.http.get<Comment[]>(url);
   }
 
-<<<<<<< HEAD
   uploadImage(image) {
     this.postImage = image;
     let url = this.postUrl + "/upload/";
@@ -142,6 +125,4 @@ export class PostService {
     return this.http.get<rating[]>(url);
   }
 
-=======
->>>>>>> parent of 6a86885... Post rating system implemented. needs improving
 }
