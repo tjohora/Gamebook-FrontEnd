@@ -18,6 +18,9 @@ export class PostFormComponent implements OnInit {
   postCheck;
   userId: number;
   currentUser = this.authenticationService.currentUserValue;
+  selectedFile = null;
+
+  
   
 
 
@@ -50,5 +53,18 @@ export class PostFormComponent implements OnInit {
         alert('There was a problem with the upload, please try again later.')
       }
     })
-  };
+  }
+
+  onFileSelected(event){
+    console.log(event);
+    this.selectedFile = event.target.files[0];
+  }
+
+  onUpload(){
+
+    
+    this.postService.uploadImage(this.selectedFile);
+    this.router.navigate(["/profile"]);
+  }
+
 }

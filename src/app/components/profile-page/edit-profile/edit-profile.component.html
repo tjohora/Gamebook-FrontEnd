@@ -18,7 +18,17 @@
             <label>Date of Birth: </label>
             <input class="form-control" id="dob" type="date" placeholder="dd/mm/yyyy" formControlName="dob">
         </div>
-        
+
+        <label>Profile Image</label>
+        <div class="input-group mb-3">
+
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" multiple formControlName="importFile" id="importFile"
+                    (change)="onFileSelected($event)">
+                <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose
+                    Image</label>
+            </div>
+        </div>
         <button class="button btn btn-primary inline" type="submit">Submit</button>
         <button class="btn btn-outline-primary my-2 my-sm-0 inline" routerLink="/profile">Return</button>
     </form>
