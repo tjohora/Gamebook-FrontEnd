@@ -13,6 +13,7 @@ export class CommentListComponent implements OnInit
   comments: Comment[];
   posts: Post[];
   NoOfComments = 0;
+  ratings;
 
   constructor(private route: ActivatedRoute,
     private postService: PostService) { }
@@ -30,6 +31,9 @@ export class CommentListComponent implements OnInit
         this.comments = comments;
         this.NoOfComments = comments.length;
       });
+      // this.postService.getRatingOfPost(postId).subscribe(ratings => {
+      //   this.ratings = ratings;
+      // });
     });
   }
 }

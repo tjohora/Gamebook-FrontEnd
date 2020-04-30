@@ -22,4 +22,8 @@ describe('AdminPageComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // window.onbeforeunload = function () {
+  //   window.scrollTo(0, 0);
+  // }
 });
