@@ -3,6 +3,9 @@ import { UserService } from 'src/app/services/user.service';
 import { user } from 'src/app/models/user';
 import { Post } from '../../models/Post'
 import { PostService } from '../../services/post.service';
+import { FormBuilder, Validators } from '@angular/forms';
+
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -18,7 +21,8 @@ export class ProfilePageComponent implements OnInit {
 
   constructor(
     private authenticationService: UserService,
-    private postService: PostService
+    private postService: PostService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
