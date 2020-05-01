@@ -117,3 +117,27 @@
     }
 
 
+    .statsTable {
+      margin-top:20px;
+      border-collapse: collapse;
+      table-layout:fixed;
+    }
+    .statsTable td, table th {
+      border: 1px solid black;
+    }
+    .statsTable tr:first-child th {
+      border-top: 0;
+    }
+    .statsTable tr:last-child td {
+      border-bottom: 0;
+    }
+    .statsTable tr td:first-child,
+    .statsTable tr th:first-child {
+      border-left: 0;
+    }
+    .statsTable tr td:last-child,
+    .statsTable tr th:last-child {
+      border-right: 0;
+    }
+
+

@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Post } from 'src/app/models/post';
 import { user } from 'src/app/models/user';
 import { PostService } from 'src/app/services/post.service';
+import { ConditionalExpr } from '@angular/compiler';
 declare var jquery: any;
 declare var $: any;
 
@@ -15,36 +16,78 @@ export class AdminPageComponent implements OnInit {
   @Input() post: Post;
   @Output() selectedPost = new EventEmitter<Post>();
   userId: number;
+  user1: user;
+
   posts: Post[] = [];
   users: user[] = [];
   comments: Comment[] = [];
+
   selectedRow;
   numPosts: number;
   toggle: boolean = true;
-  count: number;
+
+  activePosts: number = 0;
+  activeUsers: number = 0;
+  activeComments: number = 0;
+
+  removedPosts: number = 0;
+  removedUsers: number = 0;
+  removedComments: number = 0;
+
+  postsToday = 0;
+  postsThisWeek = 0;
+  postsThisMonth = 0;
+
+  commentsToday = 0;
+  commentsThisWeek = 0;
+  commentsThisMonth = 0;
+
 
   constructor(private postService: PostService, private userService: UserService) {
-
   }
 
   ngOnInit() {
+    //Timeline data
+    var dayAgo = new Date();
+    dayAgo.setDate(dayAgo.getDate() - 1);
+
+    var weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 7);
+
+    var monthAgo = new Date();
+    monthAgo.setDate(weekAgo.getDate() - 30);
 
     this.toggle = localStorage.getItem('myKey') == 'true';
 
     this.postService.getPosts().subscribe(data => {
-      console.log(data);
+      console.log("TEST: " + dayAgo.toISOString());
+      console.log("TEST: " + weekAgo.toISOString());
+      console.log("TEST: " + monthAgo.toISOString());
       this.posts = data;
+      this.activePosts = this.posts.filter(data => data['active'] === 1).length;
+      this.removedPosts = this.posts.filter(data => data['active'] === 0).length;
 
+      this.postsToday = this.posts.filter(data => data['postDate'] >= dayAgo.toISOString() && data['active'] === 1).length;
+      this.postsThisWeek = this.posts.filter(data => data['postDate'] >= weekAgo.toISOString() && data['active'] === 1).length;
+      this.postsThisMonth = this.posts.filter(data => data['postDate'] >= monthAgo.toISOString() && data['active'] === 1).length;
     });
 
     this.postService.getComments().subscribe(data => {
       console.log(data);
       this.comments = data;
+      this.activeComments = this.comments.filter(data => data['active'] === 1).length;
+      this.removedComments = this.comments.filter(data => data['active'] === 0).length;
+
+      this.commentsToday = this.comments.filter(data => data['commentDate'] >= dayAgo.toISOString() && data['active'] === 1).length;
+      this.commentsThisWeek = this.comments.filter(data => data['commentDate'] >= weekAgo.toISOString() && data['active'] === 1).length;
+      this.commentsThisMonth = this.comments.filter(data => data['commentDate'] >= monthAgo.toISOString() && data['active'] === 1).length;
     });
 
     this.userService.getUsers().subscribe(data => {
       console.log(data);
       this.users = data;
+      this.activeUsers = this.users.filter(data => data['active'] === 1).length;
+      this.removedUsers = this.users.filter(data => data['active'] === 0).length;
     });
 
     //Keep current tab active on page refresh
@@ -87,6 +130,4 @@ export class AdminPageComponent implements OnInit {
     this.toggle = !this.toggle;
     localStorage.setItem('myKey', JSON.stringify(this.toggle));
   }
-
-
 }

@@ -16,9 +16,26 @@
             <div class="d-flex justify-content-center searchRow text-center font-weight-bold"
                 [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">
                 <div class="p-2">Search By User Name: <input type="text" [(ngModel)]="searchText2"> </div>
-                <h4 class="p-2 countHeaders text-center" [ngClass]="{'countHeaders': toggle, 'countHeaders2': !toggle}">
-                    Active : {{ users.length }}</h4>
             </div>
+
+            <table class="statsTable table-striped table-hover col-sm-12">
+                <thead class="text-center">
+                    <tr class="">
+                        <th>Active Users</th>
+                        <th>Removed Users</th>
+                        <th>Total Users</th>
+                    </tr>
+                </thead>
+                <tbody class="statsBody text-center">
+                    <ng-container ng-repeat="u in users">
+                        <tr class="">
+                            <td class="font-weight-bold">{{activeUsers}}</td>
+                            <td class="font-weight-bold">{{removedUsers}}</td>
+                            <td class="font-weight-bold">{{users.length}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
 
             <br>
             <!-- COLLAPSE TABLE BUTTON -->
@@ -43,8 +60,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}"
-                                *ngFor='let u of users | filterUsers : searchText2; let i =index'
+                            <ng-container *ngFor='let u of users | filterUsers : searchText2; let i =index'>
+                            <tr *ngIf="u.active == 1" class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}"                              
                                 (click)='rowSelected(i)' [class.active]='i==selectedRow'>
                                 <td>{{u.userId}}</td>
                                 <td>{{u.profileId}}</td>
@@ -60,13 +77,14 @@
                                         USER</button>
                                 </td>
                             </tr>
+                            </ng-container>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- -----POSTS SECTION OF ADMIN PAGE-----  -->
     <div role="tabpanel" class="tab-pane" id="posts">
         <div class="test col-sm-12">
@@ -75,21 +93,50 @@
                 [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">
                 <div class="p-2">Search By Post User : <input type="text" [(ngModel)]="searchText4"> </div>
                 <div class="p-2">Search By Post Header: <input type="text" [(ngModel)]="searchText3"></div>
-                <h4 class="p-2 countHeaders text-center" [ngClass]="{'countHeaders': toggle, 'countHeaders2': !toggle}">
-                    Active : {{ posts.length }}</h4>
             </div>
 
-            <!-- <div *ngFor="let p of posts">
-                <div class="stats col-md-6 mb-5" *ngIf="p.active == '1'">
-                    ACTIVE : {{posts.length}}
-                </div>
-                <div class="stats col-md-6 mb-5" *ngIf="p.active == '0'">
-                    REMOVED : {{posts.length}}
-                </div>
-            </div> -->
+            <table class="statsTable table-striped table-hover col-sm-12">
+                <thead class="text-center">
+                    <tr>
+                        <th>Active Posts</th>
+                        <th>Removed Posts</th>
+                        <th>Total Posts</th>
+                    </tr>
+                </thead>
+                <tbody class="statsBody text-center">
+
+                    <ng-container ng-repeat="p in posts">
+                        <tr class="">
+                            <td class="font-weight-bold">{{activePosts}}</td>
+                            <td class="font-weight-bold">{{removedPosts}}</td>
+                            <td class="font-weight-bold">{{posts.length}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+
+            <table class="statsTable table-striped table-hover col-sm-12">
+                <thead class="text-center">
+                    <tr>
+                        <th>Posts Today</th>
+                        <th>Posts This Week</th>
+                        <th>Total This Month</th>
+                    </tr>
+                </thead>
+                <tbody class="statsBody text-center">
+
+                    <ng-container ng-repeat="p in posts">
+                        <tr class="">
+                            <td class="font-weight-bold">{{postsToday}}</td>
+                            <td class="font-weight-bold">{{postsThisWeek}}</td>
+                            <td class="font-weight-bold">{{postsThisMonth}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
 
             <br>
-            
+
             <!-- COLLAPSE TABLE BUTTON -->
             <button class="btn col-sm-12 collapseBtn" type="button" data-toggle="collapse"
                 data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Expand/Collapse
@@ -141,9 +188,48 @@
                 [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">
                 <div class="p-2">Search By Comments User: <input type="text" [(ngModel)]="searchText2"></div>
                 <div class="p-2">Search By Comments Content: <input type="text" [(ngModel)]="searchText"></div>
-                <h4 class="p-2 countHeaders text-center" [ngClass]="{'countHeaders': toggle, 'countHeaders2': !toggle}">
-                    Active : {{comments.length}} </h4>
             </div>
+
+
+            <table class="statsTable table-striped table-hover col-sm-12">
+                <thead class="text-center">
+                    <tr class="">
+                        <th>Active Comments</th>
+                        <th>Removed Comments</th>
+                        <th>Total Comments</th>
+                    </tr>
+                </thead>
+                <tbody class="statsBody text-center">
+                    <ng-container ng-repeat="c in comments">
+                        <tr class="">
+                            <td class="font-weight-bold">{{activeComments}}</td>
+                            <td class="font-weight-bold">{{removedComments}}</td>
+                            <td class="font-weight-bold">{{comments.length}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
+
+            
+            <table class="statsTable table-striped table-hover col-sm-12">
+                <thead class="text-center">
+                    <tr>
+                        <th>Comments Today</th>
+                        <th>Comments This Week</th>
+                        <th>Comments This Month</th>
+                    </tr>
+                </thead>
+                <tbody class="statsBody text-center">
+
+                    <ng-container ng-repeat="c in comments">
+                        <tr class="">
+                            <td class="font-weight-bold">{{commentsToday}}</td>
+                            <td class="font-weight-bold">{{commentsThisWeek}}</td>
+                            <td class="font-weight-bold">{{commentsThisMonth}}</td>
+                        </tr>
+                    </ng-container>
+                </tbody>
+            </table>
 
             <br>
             <!-- COLLAPSE TABLE BUTTON -->
@@ -165,8 +251,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}"
-                                *ngFor='let c of comments | filterComments : searchText | filterUsers : searchText2; let i =index'
+                            <ng-container *ngFor='let c of comments | filterComments : searchText | filterUsers : searchText2; let i =index'>
+                            <tr  *ngIf="c.active == 1" class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}"                               
                                 (click)='rowSelected(i)' [class.active]='i==selectedRow'>
                                 <td>{{c.userName}}</td>
                                 <td>{{c.commentDate}}</td>
@@ -176,6 +262,7 @@
                                         (click)="deleteComment(c.commentID)">DELETE
                                         COMMENT</button></td>
                             </tr>
+                        </ng-container>
                         </tbody>
                     </table>
                 </div>

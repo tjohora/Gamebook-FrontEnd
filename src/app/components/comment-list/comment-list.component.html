@@ -6,7 +6,12 @@
     <h2 style="text-align: center">No Comments!(Yet..)</h2>
 </div>
 <div *ngIf="(( NoOfComments )) > 0">
-    <app-comment *ngFor = "let comment of comments" [comment]="comment">
+    <div *ngFor = "let comment of comments" >
 
-    </app-comment>
+        <app-comment *ngIf = "comment.active == '1'" [comment]="comment">
+        </app-comment>
+        </div>
+    <!-- <app-comment *ngFor = "let comment of comments" [comment]="comment">
+    </app-comment> -->
+    
 </div>

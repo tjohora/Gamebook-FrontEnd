@@ -8,6 +8,6 @@ export class user{
     userType: number;
     address: string;
     dob: string;
-    active: boolean;
+    active: number;
 
 }

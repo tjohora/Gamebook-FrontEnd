@@ -7,6 +7,9 @@
       <a class="btn btn-primary btn-lg" href="#!" role="button">Some action</a>
     </p> -->
   </div>
-<app-post *ngFor = "let post of posts" [post]="post">
-
-</app-post>
+  
+<!-- <app-post *ngFor = "let post of posts" [post]="post">
+</app-post> -->
+<div *ngFor="let post of posts">
+  <app-post *ngIf="post.active=='1'" [post]="post"></app-post>
+</div>
