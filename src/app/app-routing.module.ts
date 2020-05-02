@@ -12,6 +12,7 @@ import { ProfilePageComponent } from './components/profile-page/profile-page.com
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
 import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { SearchPostComponent } from './components/search-post/search-post.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'admin' , component: AdminPageComponent, canActivate: [AuthGuard] },
   { path: 'editComment/:commentId' , component: EditCommentComponent, canActivate: [AuthGuard] },
   { path: 'editPost/:postId' , component: EditPostComponent, canActivate: [AuthGuard] },
+  { path: 'search/:searchItem' , component: SearchPostComponent },
   { path: '**', redirectTo: '' }
 ];
 
@@ -34,4 +36,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, ProfilePageComponent, CommentListComponent, editProfileComponent, EditCommentComponent, EditPostComponent]
+export const routingComponents = [RegisterComponent, LoginComponent, HomeComponent, PostFormComponent, CommentFormComponent, ProfilePageComponent, CommentListComponent, editProfileComponent, EditCommentComponent, EditPostComponent, SearchPostComponent]

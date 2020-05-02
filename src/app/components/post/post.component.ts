@@ -37,8 +37,8 @@ export class PostComponent implements OnInit {
       for(let k in ratings) {
         this.ratingsMap.set(ratings[k]["postId"],ratings[k]["selectedRating"]);
       }
-      console.log("Test");
-      console.log(this.ratingsMap);
+      //console.log("Test");
+      //console.log(this.ratingsMap);
     });
   }
 

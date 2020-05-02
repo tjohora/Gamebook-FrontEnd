@@ -125,4 +125,8 @@ export class PostService {
     return this.http.get<rating[]>(url);
   }
 
+  getSearchResults(searchItem){
+    return this.http.get<Post[]>(this.postUrl + "/getPostBySearch/" + searchItem);
+  }
+
 }

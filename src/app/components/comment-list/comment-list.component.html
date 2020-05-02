@@ -1,4 +1,4 @@
-<app-post *ngFor = "let post of posts" [post]="post">
+<app-post *ngFor="let post of posts" [post]="post">
 
 </app-post>
 <app-comment-form></app-comment-form>
@@ -6,12 +6,12 @@
     <h2 style="text-align: center">No Comments!(Yet..)</h2>
 </div>
 <div *ngIf="(( NoOfComments )) > 0">
-    <div *ngFor = "let comment of comments" >
+    <div *ngFor="let comment of comments">
 
-        <app-comment *ngIf = "comment.active == '1'" [comment]="comment">
+        <app-comment *ngIf="comment.active == '1'" [comment]="comment">
         </app-comment>
-        </div>
+    </div>
     <!-- <app-comment *ngFor = "let comment of comments" [comment]="comment">
     </app-comment> -->
-    
+
 </div>
