@@ -4,9 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Post } from '../models/Post';
 import { TestBed } from '@angular/core/testing';
 import { UserService } from '../services/user.service';
-
-
 import { rating } from '../models/rating';
+import { flaggedPost } from '../models/FlaggedPost';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,12 +19,18 @@ const httpOptions = {
 })
 export class PostService {
   currentUser = this.authenticationService.currentUserValue;
-  postUrl: string = 'http://localhost:8080/Year3Project/webresources/post';
-  commentUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
-  ratingUrl: string = 'http://localhost:8080/Year3Project/webresources/Rating';
+  // postUrl: string = 'http://localhost:8080/Year3Project/webresources/post';
+  // commentUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
+  // ratingUrl: string = 'http://localhost:8080/Year3Project/webresources/Rating';
+
+  postUrl: string = 'http://localhost:25876/Year3Project/webresources/post';
+  commentUrl: string = 'http://localhost:25876/Year3Project/webresources/comments';
+  ratingUrl: string = 'http://localhost:25876/Year3Project/webresources/Rating';
+  flaggedPUrl: string = 'http://localhost:25876/Year3Project/webresources/FlaggedPost';
   imageUrl: string = null;
   postImage: File = null;
   posts: Post[] = [];
+  this: any;
 
   constructor(private http: HttpClient,
     private authenticationService: UserService
@@ -110,6 +115,9 @@ export class PostService {
       console.log(res);
     })}
 
+
+// ---------RATINGS----------
+
   ratePost(details){
     let url = this.ratingUrl + "/updateRating"
     return this.http.post<any>(url, details);
@@ -128,5 +136,42 @@ export class PostService {
   getSearchResults(searchItem){
     return this.http.get<Post[]>(this.postUrl + "/getPostBySearch/" + searchItem);
   }
+
+  // ---------FLAGGED POSTS----------
+
+  reportPost(details){
+    let url = this.flaggedPUrl + "/reportPost"
+    return this.http.post<any>(url, details);
+  }
+
+  getFlagged(): Observable<flaggedPost[]>{
+let url = this.flaggedPUrl + "/getAllFlaggedPosts"
+    return this.http.get<flaggedPost[]>(url);
+  }
+
+  // releasePost(postId){
+  //   let url = this.flaggedPUrl + "/releasePost/" + postId;
+  //   console.log("URL IS: " + url);
+  //   window.location.reload();
+  //   console.log("URL IS: " + url);
+  //   return this.http.get<flaggedPost[]>(url);
+  // }
+
+  releasePost(postId){
+    let url = this.flaggedPUrl + "/releasePost/" + postId;
+    console.log("THIS ::: " + url)
+    this.http.get(url).subscribe((s) => {
+      console.log(s)
+    })
+    window.location.reload();
+  }
+
+  // getComments(): Observable<Comment[]> {
+  //   return this.http.get<Comment[]>(this.commentUrl);
+  // }
+
+  // getPosts(): Observable<Post[]> {
+  //   return this.http.get<Post[]>(this.postUrl);
+  //}
 
 }

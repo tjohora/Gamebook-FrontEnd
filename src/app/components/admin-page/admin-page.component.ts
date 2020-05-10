@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Post } from 'src/app/models/post';
 import { user } from 'src/app/models/user';
+import { flaggedPost } from 'src/app/models/flaggedPost';
 import { PostService } from 'src/app/services/post.service';
 import { ConditionalExpr } from '@angular/compiler';
 declare var jquery: any;
@@ -18,8 +19,10 @@ export class AdminPageComponent implements OnInit {
   userId: number;
   user1: user;
 
+  releaseButton : any;
   posts: Post[] = [];
   users: user[] = [];
+  flaggedPosts: flaggedPost[] = [];
   comments: Comment[] = [];
 
   selectedRow;
@@ -67,6 +70,7 @@ export class AdminPageComponent implements OnInit {
       this.activePosts = this.posts.filter(data => data['active'] === 1).length;
       this.removedPosts = this.posts.filter(data => data['active'] === 0).length;
 
+
       this.postsToday = this.posts.filter(data => data['postDate'] >= dayAgo.toISOString() && data['active'] === 1).length;
       this.postsThisWeek = this.posts.filter(data => data['postDate'] >= weekAgo.toISOString() && data['active'] === 1).length;
       this.postsThisMonth = this.posts.filter(data => data['postDate'] >= monthAgo.toISOString() && data['active'] === 1).length;
@@ -89,6 +93,12 @@ export class AdminPageComponent implements OnInit {
       this.activeUsers = this.users.filter(data => data['active'] === 1).length;
       this.removedUsers = this.users.filter(data => data['active'] === 0).length;
     });
+
+    this.postService.getFlagged().subscribe(data =>{
+      this.flaggedPosts = data;
+    });
+
+
 
     //Keep current tab active on page refresh
     $(document).ready(function () {
@@ -129,5 +139,10 @@ export class AdminPageComponent implements OnInit {
   change() {
     this.toggle = !this.toggle;
     localStorage.setItem('myKey', JSON.stringify(this.toggle));
+  }
+
+  releasePost(id : number){
+    console.log("See ID: " + id)
+    this.postService.releasePost(id);
   }
 }
