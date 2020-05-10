@@ -5,7 +5,7 @@
     <li role="presentation" class="active"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a>
     </li>
     <li class="toggleText" style="position:absolute;right:20px;">Change Theme: <input class="toggle text-center"
-            type="checkbox" (click)="change()" /></li>           
+            type="checkbox" (click)="change()" /></li>
 </ul>
 
 
@@ -179,6 +179,9 @@
                         Post Creator: <input type="text" [(ngModel)]="searchText4"> </div>
                     <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:right">Search
                         By
+                        Post Content: <input type="text" [(ngModel)]="searchPcontent"></div>
+                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:right">Search
+                        By
                         Post Header: <input type="text" [(ngModel)]="searchText3"></div>
                     <div class="well">
 
@@ -196,7 +199,7 @@
                             <tbody>
 
                                 <ng-container
-                                    *ngFor='let p of posts | filterHeaders : searchText3 | filterPostUser : searchText4 | filterPostID : searchPid; let i =index'>
+                                    *ngFor='let p of posts | filterHeaders : searchText3 | filterPostContent : searchPcontent | filterPostUser : searchText4 | filterPostID : searchPid; let i =index'>
                                     <tr *ngIf="p.active == 1" class="dataFont"
                                         [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}">
                                         <td>{{p.userName}}</td>
@@ -204,10 +207,11 @@
                                         <td>{{p.postContent}}</td>
                                         <td>{{p.postDate}}</td>
                                         <td><button class='btn-outline-dark btn-sm' id="remove"
-                                                (click)="deletePost(p.postId)" (click) = "releasePost(p.postId)">DELETE
-                                                POST</button>                                                
-                                            <button class='btn-outline-dark btn-sm' id="release" ng-click="releasePost(p.postId)"
-                                                (click)="releasePost(p.postId)">ALLOW CONTENT</button>
+                                                (click)="deletePost(p.postId)" (click)="releasePost(p.postId)">DELETE
+                                                POST</button>
+                                            <button class='btn-outline-dark btn-sm' id="release"
+                                                ng-click="releasePost(p.postId)" (click)="releasePost(p.postId)">ALLOW
+                                                CONTENT</button>
                                         </td>
 
                                     </tr>

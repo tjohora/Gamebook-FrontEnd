@@ -22,6 +22,7 @@ import { FilterPostUserPipe } from './filters/filter-post-user.pipe';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { SearchPostComponent } from './components/search-post/search-post.component';
 import { FilterPostIDPipe } from './filters/filter-post-id.pipe';
+import { FilterPostContentPipe } from './filters/filter-post-content.pipe';
 
 
 
@@ -42,6 +43,7 @@ import { FilterPostIDPipe } from './filters/filter-post-id.pipe';
     FilterHeadersPipe,
     FilterPostUserPipe,
     FilterPostIDPipe,
+    FilterPostContentPipe,
     
   ],
   imports: [

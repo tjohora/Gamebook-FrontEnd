@@ -22,6 +22,8 @@ export class PostComponent implements OnInit {
   flaggedCheck: any;
   ratingsMap: Map<any, any>;
   flaggedMap: Map<any, any>;
+  checkFlagged: 1;
+  checkFlagged2 : 2;
 
 
   constructor(private authenticationService: UserService,

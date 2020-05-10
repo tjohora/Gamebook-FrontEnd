@@ -46,8 +46,13 @@
     </div>
     <br>
 
-    <a class="topright" style="position: relative;" (click)="flagged(currentUser.userId, post.postId, 1)" sytle="float:right" >
-            Report Post! </a>
+    <div *ngIf="flaggedMap.get(post.postId) > 0"><i> <img
+        width="20px" height="20px" src="../../../assets/img/flag.jpg"> </i> </div>
+
+    <a class="topright" style="position: relative;" (click)="flagged(currentUser.userId, post.postId, 1)"
+        sytle="float:right">
+        Report Post! </a>    
+
     <a [routerLink]="['/commentList', post.postId]">Comments</a>
 
 </div>
