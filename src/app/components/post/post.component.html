@@ -46,8 +46,8 @@
     </div>
     <br>
 
-    <div *ngIf="flaggedMap.get(post.postId) > 0"><i> <img
-        width="20px" height="20px" src="../../../assets/img/flag.jpg"> </i> </div>
+    <div *ngIf="flaggedMap?.get(post.postId) > 0" ><i> <img
+        width="20px" height="20px" src="../../../assets/img/flag.jpg"> </i>(x {{ flaggedMap.get(post.postId) }}) </div>
 
     <a class="topright" style="position: relative;" (click)="flagged(currentUser.userId, post.postId, 1)"
         sytle="float:right">
