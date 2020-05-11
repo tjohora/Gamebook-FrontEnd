@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 import { PostService } from 'src/app/services/post.service';
 import { Router } from '@angular/router';
 import { rating } from 'src/app/models/rating';
+import { flaggedPost } from 'src/app/models/flaggedPost';
+import { IfStmt, ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-post',
@@ -12,60 +14,83 @@ import { rating } from 'src/app/models/rating';
 })
 export class PostComponent implements OnInit {
   @Input() post: Post;
-  userId:number;
+  userId: number;
   currentUser;
   deletecheck;
   details: any;
   upvotecheck: any;
+  flaggedCheck: any;
   ratingsMap: Map<any, any>;
+  flaggedMap: Map<any, any>;
+  checkFlagged: 1;
+  checkFlagged2 : 2;
+
 
   constructor(private authenticationService: UserService,
     private router: Router,
-    private postService: PostService) {}
+    private postService: PostService) { }
 
-  ngOnInit() 
-  {
-    if(this.authenticationService.currentUserValue !== null)
-    {
+  ngOnInit() {
+    if (this.authenticationService.currentUserValue !== null) {
       this.currentUser = this.authenticationService.currentUserValue;
       this.userId = this.currentUser.userId;
     }
     this.postService.getRatings().subscribe(ratings => {
-      //console.log(ratings);
       this.ratingsMap = new Map();
 
-      for(let k in ratings) {
-        this.ratingsMap.set(ratings[k]["postId"],ratings[k]["selectedRating"]);
+      for (let k in ratings) {
+        this.ratingsMap.set(ratings[k]["postId"], ratings[k]["selectedRating"]);
       }
-      //console.log("Test");
-      //console.log(this.ratingsMap);
+    });
+
+    this.postService.getFlagged().subscribe(flaggedPosts => {
+      this.flaggedMap = new Map();
+
+      for (let fp in flaggedPosts) {
+        this.flaggedMap.set(flaggedPosts[fp]["postId"], flaggedPosts[fp]["flagPost"]);
+      }
     });
   }
 
-  deletePost(postId){
+  flagged(userId, postId, flagPost) {
+    this.details = new flaggedPost(postId, userId, flagPost);
+    let jsonStr = JSON.stringify(this.details);
+    console.log("FIND ME!" + jsonStr);
+    this.postService.reportPost(jsonStr).subscribe(data => {
+      this.flaggedCheck = data;
+      if (this.flaggedCheck) {
+        location.reload();
+      } else {
+        alert("No Joy!")
+      }
+    })
+  }
+
+  deletePost(postId) {
     this.postService.deletePost(postId).subscribe(data => {
       this.deletecheck = data;
       console.log("Response: " + this.deletecheck);
-      if(this.deletecheck){
-        this.router.navigate(['']);        
-      }else{
+      if (this.deletecheck) {
+        this.router.navigate(['']);
+      } else {
         alert("Delete unsuccessful. Try again later.")
       }
     })
   }
 
-  rating(userId, postId, selectedRating){
+  rating(userId, postId, selectedRating) {
     this.details = new rating(postId, userId, selectedRating);
     let jsonStr = JSON.stringify(this.details);
     console.log(jsonStr);
     this.postService.ratePost(jsonStr).subscribe(data => {
       this.upvotecheck = data;
-      if(this.upvotecheck){
+      if (this.upvotecheck) {
         location.reload();
-      }else{
+      } else {
         alert("Voting problem. Try again later.")
       }
     })
-    
   }
+
+
 }
