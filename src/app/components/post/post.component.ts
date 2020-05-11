@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { rating } from 'src/app/models/rating';
 import { flaggedPost } from 'src/app/models/flaggedPost';
 import { IfStmt, ThrowStmt } from '@angular/compiler';
+import { flaggedComment } from 'src/app/models/FlaggedComment';
 
 @Component({
   selector: 'app-post',
@@ -20,8 +21,10 @@ export class PostComponent implements OnInit {
   details: any;
   upvotecheck: any;
   flaggedCheck: any;
+  flaggedCCheck: any;
   ratingsMap: Map<any, any>;
   flaggedMap: Map<any, any>;
+  flaggedCMap: Map<any, any>;
   checkFlagged: 1;
   checkFlagged2 : 2;
 
@@ -50,15 +53,36 @@ export class PostComponent implements OnInit {
         this.flaggedMap.set(flaggedPosts[fp]["postId"], flaggedPosts[fp]["flagPost"]);
       }
     });
+
+    
+    this.postService.getFlaggedC().subscribe(flaggedComments => {
+      this.flaggedCMap = new Map();
+
+      for (let fc in flaggedComments) {
+        this.flaggedCMap.set(flaggedComments[fc]["commentId"], flaggedComments[fc]["flagComment"]);
+      }
+    });
   }
 
   flagged(userId, postId, flagPost) {
     this.details = new flaggedPost(postId, userId, flagPost);
     let jsonStr = JSON.stringify(this.details);
-    console.log("FIND ME!" + jsonStr);
     this.postService.reportPost(jsonStr).subscribe(data => {
       this.flaggedCheck = data;
       if (this.flaggedCheck) {
+        location.reload();
+      } else {
+        alert("No Joy!")
+      }
+    })
+  }
+
+  flaggedC(userId, commentId, flagComment) {
+    this.details = new flaggedComment(commentId, userId, flagComment);
+    let jsonStr = JSON.stringify(this.details);
+    this.postService.reportComment(jsonStr).subscribe(data => {
+      this.flaggedCCheck = data;
+      if (this.flaggedCCheck) {
         location.reload();
       } else {
         alert("No Joy!")

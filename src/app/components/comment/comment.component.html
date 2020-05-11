@@ -5,6 +5,14 @@
         <small>{{ comment.commentDate }}</small>
         <p>{{ comment.content }}</p>
     </div>
+    
+    <div *ngIf="flaggedCMap?.get(comment.commentID) > 0" ><i> <img
+        width="20px" height="20px" src="../../../assets/img/flag.jpg"> </i>({{ flaggedCMap.get(comment.commentID)}}) 
+    </div>
+
+    <a class="topright" style="position: relative;" (click)="flaggedC(currentUser.userId, comment.commentID, 1)"
+        sytle="float:right">
+        Report Comment! </a> 
     <div *ngIf="userId !== -1">
         <div *ngIf="userId == (comment.userId)">
             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
@@ -13,4 +21,6 @@
             </div>
         </div>
     </div>
+
+ 
 </div>

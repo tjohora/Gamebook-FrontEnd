@@ -5,6 +5,7 @@ import { user } from 'src/app/models/user';
 import { flaggedPost } from 'src/app/models/flaggedPost';
 import { PostService } from 'src/app/services/post.service';
 import { ConditionalExpr } from '@angular/compiler';
+import { flaggedComment } from 'src/app/models/FlaggedComment';
 declare var jquery: any;
 declare var $: any;
 
@@ -23,6 +24,7 @@ export class AdminPageComponent implements OnInit {
   posts: Post[] = [];
   users: user[] = [];
   flaggedPosts: flaggedPost[] = [];
+  flaggedComments: flaggedComment[] = [];
   comments: Comment[] = [];
 
   selectedRow;
@@ -98,6 +100,10 @@ export class AdminPageComponent implements OnInit {
       this.flaggedPosts = data;
     });
 
+    this.postService.getFlaggedC().subscribe(data =>{
+      this.flaggedComments = data;
+    });
+
 
 
     //Keep current tab active on page refresh
@@ -144,5 +150,10 @@ export class AdminPageComponent implements OnInit {
   releasePost(id : number){
     console.log("See ID: " + id)
     this.postService.releasePost(id);
+  }
+
+  releaseComment(id : number){
+    console.log("See ID: " + id)
+    this.postService.releaseComment(id);
   }
 }

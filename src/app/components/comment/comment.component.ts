@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { isDefined } from '@angular/compiler/src/util';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PostService } from 'src/app/services/post.service';
+import { flaggedComment } from 'src/app/models/FlaggedComment';
 
 @Component({
   selector: 'app-comment',
@@ -16,6 +17,9 @@ export class CommentComponent implements OnInit {
   deleteCommentForm;
   commentID;
   deletecheck;
+  flaggedCMap: Map<any, any>;
+  details: any;
+  flaggedCCheck: any;
 
   constructor(private formBuilder: FormBuilder, 
     private authenticationService: UserService,
@@ -31,7 +35,28 @@ export class CommentComponent implements OnInit {
       this.currentUser = this.authenticationService.currentUserValue;
       this.userId = this.currentUser.userId;
     }
-    
+
+        this.postService.getFlaggedC().subscribe(flaggedComments => {
+      this.flaggedCMap = new Map();
+
+      for (let fc in flaggedComments) {
+        this.flaggedCMap.set(flaggedComments[fc]["commentId"], flaggedComments[fc]["flagComment"]);
+      }
+    })
+  }
+
+  flaggedC(userId, commentId, flagComment) {
+    this.details = new flaggedComment(commentId, userId, flagComment);
+    let jsonStr = JSON.stringify(this.details);
+    this.postService.reportComment(jsonStr).subscribe(data => {
+      this.flaggedCCheck = data;
+      if (this.flaggedCCheck) {
+        location.reload();
+        console.log("TEST : " + this.flaggedCCheck)
+      } else {
+        alert("No Joy!")
+      }
+    })
   }
 
   deleteComment(commentID){
@@ -45,5 +70,7 @@ export class CommentComponent implements OnInit {
       }
     })
   }
+
+
 
 }
