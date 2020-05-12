@@ -65,9 +65,6 @@ export class AdminPageComponent implements OnInit {
     this.toggle = localStorage.getItem('myKey') == 'true';
 
     this.postService.getPosts().subscribe(data => {
-      console.log("TEST: " + dayAgo.toISOString());
-      console.log("TEST: " + weekAgo.toISOString());
-      console.log("TEST: " + monthAgo.toISOString());
       this.posts = data;
       this.activePosts = this.posts.filter(data => data['active'] === 1).length;
       this.removedPosts = this.posts.filter(data => data['active'] === 0).length;

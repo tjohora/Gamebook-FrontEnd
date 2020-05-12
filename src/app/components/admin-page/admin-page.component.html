@@ -174,9 +174,6 @@
                 style="float:right; padding-top:10px">
                 <h3>All Posts</h3>
                 <div class="filler" [ngClass]="{'filler': toggle, 'filler2': !toggle}">
-                    <!-- <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:left">Search
-                        By
-                        Post Creator: <input type="text" [(ngModel)]="searchText4"> </div> -->
                     <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:left">Search
                         By
                         Post Header: <input type="text" [(ngModel)]="searchText3"></div>
@@ -206,14 +203,30 @@
                                         <td>{{p.postHeader}}</td>
                                         <td>{{p.postContent}}</td>
                                         <td>{{p.postDate}}</td>
-                                        <td><button class='btn-outline-dark btn-sm' id="remove"
-                                                (click)="deletePost(p.postId)" (click)="releasePost(p.postId)">DELETE
-                                                POST</button>
-                                            <button class='btn-outline-dark btn-sm' id="release"
-                                                ng-click="releasePost(p.postId)" (click)="releasePost(p.postId)">ALLOW
-                                                CONTENT</button>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn-outline-dark btn-sm dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Actions...
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="remove"
+                                                            (click)="deletePost(p.postId)"
+                                                            (click)="releasePost(p.postId)">DELETE
+                                                            CONTENT</button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="release"
+                                                            ng-click="releasePost(p.postId)"
+                                                            (click)="releasePost(p.postId)">ALLOW
+                                                            CONTENT</button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="edit"
+                                                            [routerLink]="['/editPost', p.postId]">EDIT
+                                                            CONTENT</button></a>
+                                                </div>
+                                            </div>
                                         </td>
-
                                     </tr>
                                 </ng-container>
                             </tbody>
@@ -315,9 +328,11 @@
                 style="float:right; padding-top:10px">
                 <h3>All Comments</h3>
                 <div class="filler" [ngClass]="{'filler': toggle, 'filler2': !toggle}">
-                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:left">Search By Creator:
-                        <input type="text"  [(ngModel)]="searchText2"></div>
-                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:right">Search By Content:
+                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:left">Search
+                        By Creator:
+                        <input type="text" [(ngModel)]="searchText2"></div>
+                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:right">Search
+                        By Content:
                         <input type="text" [(ngModel)]="searchText"></div>
                     <div class="well">
                         <table class="table table-striped table-hover"
@@ -339,14 +354,30 @@
                                         <td>{{c.commentDate}}</td>
                                         <td>{{c.userName}}</td>
                                         <td>{{c.content}}</td>
-                                        <td><button class='btn-outline-dark btn-small' id="remove"
-                                                (click)="deleteComment(c.commentID)" (click)="releaseComment(c.commentID)">DELETE
-                                                COMMENT</button>
-                                                <button class='btn-outline-dark btn-sm' id="release"
-                                                ng-click="releasePost(p.postId)" (click)="releaseComment(c.commentID)">ALLOW
-                                                CONTENT</button>
-                                            </td>
-
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn-outline-dark btn-sm dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Actions...
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="remove"
+                                                            (click)="deleteComment(c.commentID)"
+                                                            (click)="releaseComment(c.commentID)">DELETE
+                                                            CONTENT</button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="release"
+                                                            ng-click="releaseComment(c.commentID)"
+                                                            (click)="releaseComment(c.commentID)">ALLOW
+                                                            CONTENT</button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="edit"
+                                                            [routerLink]="['/editComment', c.commentID]">EDIT
+                                                            CONTENT</button></a>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </ng-container>
                             </tbody>
