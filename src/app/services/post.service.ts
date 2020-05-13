@@ -20,17 +20,17 @@ const httpOptions = {
 })
 export class PostService {
   currentUser = this.authenticationService.currentUserValue;
-  // postUrl: string = 'http://localhost:8080/Year3Project/webresources/post';
-  // commentUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
-  // ratingUrl: string = 'http://localhost:8080/Year3Project/webresources/Rating';
-  // flaggedPUrl: string = 'http://localhost:8080/Year3Project/webresources/FlaggedPost';
-  // flaggedCUrl: string = 'http://localhost:8080/Year3Project/webresources/FlaggedComment';
+  postUrl: string = 'http://localhost:8080/Year3Project/webresources/post';
+  commentUrl: string = 'http://localhost:8080/Year3Project/webresources/comments';
+  ratingUrl: string = 'http://localhost:8080/Year3Project/webresources/Rating';
+  flaggedPUrl: string = 'http://localhost:8080/Year3Project/webresources/FlaggedPost';
+  flaggedCUrl: string = 'http://localhost:8080/Year3Project/webresources/FlaggedComment';
 
-  postUrl: string = 'http://localhost:25876/Year3Project/webresources/post';
-  commentUrl: string = 'http://localhost:25876/Year3Project/webresources/comments';
-  ratingUrl: string = 'http://localhost:25876/Year3Project/webresources/Rating';
-  flaggedPUrl: string = 'http://localhost:25876/Year3Project/webresources/FlaggedPost';
-  flaggedCUrl: string = 'http://localhost:25876/Year3Project/webresources/FlaggedComment';
+  // postUrl: string = 'http://localhost:25876/Year3Project/webresources/post';
+  // commentUrl: string = 'http://localhost:25876/Year3Project/webresources/comments';
+  // ratingUrl: string = 'http://localhost:25876/Year3Project/webresources/Rating';
+  // flaggedPUrl: string = 'http://localhost:25876/Year3Project/webresources/FlaggedPost';
+  // flaggedCUrl: string = 'http://localhost:25876/Year3Project/webresources/FlaggedComment';
 
   imageUrl: string = null;
   postImage: File = null;
