@@ -5,10 +5,10 @@
             <i class="glyphicon glyphicon-arrow-up" (click)="rating(currentUser.userId, post.postId, 1)"><img
                     width="20px" height="20px" src="../../../assets/img/thumbs_up.png"> </i>
 
-            <div *ngIf="!ratingsMap">
+            <div *ngIf="!ratingsMap?.has(post.postId)">
                 <span class="label label-primary">0</span>
             </div>
-            <div *ngIf="ratingsMap">
+            <div *ngIf="ratingsMap?.has(post.postId)">
                 <span class="label label-primary">{{ ratingsMap.get(post.postId) }}</span>
             </div>
 
