@@ -27,6 +27,8 @@ export class PostComponent implements OnInit {
   flaggedCMap: Map<any, any>;
   checkFlagged: 1;
   checkFlagged2 : 2;
+  friends: any[];
+  bool: boolean = true;
 
 
   constructor(private authenticationService: UserService,
@@ -62,6 +64,23 @@ export class PostComponent implements OnInit {
         this.flaggedCMap.set(flaggedComments[fc]["commentId"], flaggedComments[fc]["flagComment"]);
       }
     });
+
+    this.authenticationService.getFriendsList(this.currentUser.userId).subscribe(data => {
+
+      
+      for (var i = 0; i < data.length; i++) {
+        
+        this.friends = data;
+        if(data[i]==this.post.userId){
+          this.bool = false
+        }
+        
+      }
+
+
+    })
+
+
   }
 
   flagged(userId, postId, flagPost) {
@@ -118,6 +137,7 @@ export class PostComponent implements OnInit {
   addFriend(friendId){
     // console.log(userId)
    this.authenticationService.addFriend(this.currentUser.userId, friendId)
+   location.reload();
   }
 
 }
