@@ -195,6 +195,7 @@
                             <thead class="theadPosts" [ngClass]="{'theadPosts': toggle, 'theadPosts2': !toggle}">
                                 <tr class="theadFont" [ngClass]="{'theadFont': toggle, 'theadFont2': !toggle}">
                                     <th>User Name</th>
+                                    <th>Post ID</th>
                                     <th>Post Header</th>
                                     <th>Post Content</th>
                                     <th>Date</th>
@@ -208,6 +209,7 @@
                                     <tr *ngIf="p.active == 1" class="dataFont"
                                         [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}">
                                         <td>{{p.userName}}</td>
+                                        <td>{{p.postId}}</td>
                                         <td>{{p.postHeader}}</td>
                                         <td>{{p.postContent}}</td>
                                         <td>{{p.postDate}}</td>
@@ -303,7 +305,7 @@
             <div class="collapse show col-sm-3 text-center font-weight-bold" id="collapseExample"
                 style="float:left; padding-top:10px">
                 <h3>Reported Comments</h3>
-                <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">Find Comment By ID : <input
+                <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">Find By ID : <input
                         type="number" [(ngModel)]="searchCid"> </div>
                 <div class="well">
                     <table class="table table-striped table-hover"
@@ -344,6 +346,7 @@
                             <thead class="theadPosts" [ngClass]="{'theadPosts': toggle, 'theadPosts2': !toggle}">
                                 <tr class="theadFont" [ngClass]="{'theadFont': toggle, 'theadFont2': !toggle}">
                                     <th>Comment Date</th>
+                                    <th>Comment ID</th>
                                     <th>User Name</th>
                                     <th>Content</th>
                                     <th>Action</th>
@@ -356,6 +359,7 @@
                                         [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}" (click)='rowSelected(i)'
                                         [class.active]='i==selectedRow'>
                                         <td>{{c.commentDate}}</td>
+                                        <td>{{c.commentID}}</td>
                                         <td>{{c.userName}}</td>
                                         <td>{{c.content}}</td>
                                         <td>
