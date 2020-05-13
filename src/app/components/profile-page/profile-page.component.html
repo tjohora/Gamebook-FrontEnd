@@ -9,6 +9,7 @@
         <p class="title">{{currentUser.fname}} {{currentUser.lname}}</p>
         <p>{{currentUser.dob}}</p>
         <p>{{currentUser.address}}</p>
+        <p>Profile :</p>
         <div style="margin: 24px 0;">
           <a href="#"><i class="fa fa-dribbble"></i></a>
           <a href="#"><i class="fa fa-twitter"></i></a>
@@ -17,20 +18,10 @@
         </div>
         <p><button routerLink="/editProfile">Edit Profile</button></p>
 
-        <div class="btn-group" mdbDropdown>
-          <button mdbDropdownToggle type="button" mdbBtn color="primary" class="dropdown-toggle waves-light"
-            mdbWavesEffect>
-            Basic dropdown
-          </button>
         
-          <div class="dropdown-menu dropdown-primary">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </div>
+
+          
+        
 
 
 
@@ -47,15 +38,41 @@
       <div *ngIf="(( noOfPosts )) > 0">
 
         <div *ngFor="let post of posts">
-          <app-post *ngIf="post.active=='1'"[post]="post"></app-post>
+          <app-post *ngIf="post.active=='1'" [post]="post"></app-post>
         </div>
-        <!-- <app-post *ngFor="let post of posts" [post]="post"></app-post> -->
-        
+
+
       </div>
     </div>
 
 
     <div class="col-sm-3 border-left border-top border-bottom">
-      <app-post-form></app-post-form>
+      <div class="border-bottom">
+        <app-post-form></app-post-form>
+      </div>
+      <div>
+        <h2>Friends List</h2>
+
+        <div *ngFor="let item of friendDetails" class="w3-container">
+
+          <div class="col-sm-6 border-right border-top border-bottom">
+            <div class=" card">
+              <img src="assets/img/avatar.png" alt="John" style="width:100%">
+
+              <p class="title">{{item.fname}}</p>
+
+
+
+
+
+
+
+
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>

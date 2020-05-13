@@ -48,7 +48,7 @@ export class PostFormComponent implements OnInit {
     this.postService.sendPostText(details).subscribe(data => {
       this.postCheck = data;
       if(this.postCheck){
-        this.router.navigate(['']);
+        window.location.reload();    
       }else{
         alert('There was a problem with the upload, please try again later.')
       }
@@ -65,6 +65,10 @@ export class PostFormComponent implements OnInit {
     
     this.postService.uploadImage(this.selectedFile);
     this.router.navigate(["/profile"]);
+  }
+
+  addFriend(){
+    
   }
 
 }

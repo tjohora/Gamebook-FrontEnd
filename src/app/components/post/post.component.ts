@@ -47,7 +47,7 @@ export class PostComponent implements OnInit {
       this.deletecheck = data;
       console.log("Response: " + this.deletecheck);
       if(this.deletecheck){
-        this.router.navigate(['']);        
+        window.location.reload();       
       }else{
         alert("Delete unsuccessful. Try again later.")
       }
@@ -66,6 +66,15 @@ export class PostComponent implements OnInit {
         alert("Voting problem. Try again later.")
       }
     })
+    
+    
+
+
+  }
+  addFriend(friendId){
+     // console.log(userId)
+    this.authenticationService.addFriend(this.currentUser.userId, friendId)
+
     
   }
 }

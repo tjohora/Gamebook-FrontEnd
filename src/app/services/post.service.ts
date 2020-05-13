@@ -37,7 +37,9 @@ export class PostService {
 
   sendPostText(details) {
     let jsonStr = JSON.stringify(details);
+    console.log(this.postUrl);
     return this.http.post<any>(this.postUrl, jsonStr);
+
   };
 
   getOnePost(postId) {
@@ -107,7 +109,7 @@ export class PostService {
     console.log(file.get('userId'));
     
     this.http.post<any>(url, file).subscribe(res=>{
-      console.log(res);
+      
     })}
 
   ratePost(details){

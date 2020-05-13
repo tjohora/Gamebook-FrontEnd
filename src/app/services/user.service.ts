@@ -17,6 +17,8 @@ export class UserService {
 
   private currentUserSubject: BehaviorSubject<user>;
   public currentUser: Observable<user>;
+  postImage: File = null;
+
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<user>(JSON.parse(sessionStorage.getItem('currentUser')));
@@ -81,6 +83,45 @@ export class UserService {
     let url = this.url + "/deleteUser/" + userId;
     this.http.put(url, "", httpOptions).subscribe();
     window.location.reload();
+  }
+
+  uploadImage(image) {
+    this.postImage = image;
+    let url = this.url + "/upload";
+    const file = new FormData();
+
+
+    file.append('image', this.postImage, this.postImage.name);
+    file.append('userId', this.currentUserValue.userId + "");
+    console.log(file.get('userId'));
+
+    this.http.post<any>(url, file).subscribe(res => {
+      console.log(res);
+    })
+  }
+
+
+  getFriendsList(userId) {
+    let url = this.url + '/friend/' + userId;
+    return this.http.get<any>(url);
+
+  }
+
+  addFriend(userId, friendId) {
+    let reg = this.url + "/friend"
+    const file = new FormData();
+    file.append('userId', userId);
+    file.append('friendId', friendId);
+    
+    return this.http.post<any>(reg, file).subscribe(res => {
+      console.log(res);
+    })
+  }
+
+  getUserDetails(userId) {
+    let url = this.url + '/getUserDetails/' + userId;
+
+    return this.http.get<user>(url);
   }
 
 }

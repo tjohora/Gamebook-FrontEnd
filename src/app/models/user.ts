@@ -9,5 +9,6 @@ export class user{
     address: string;
     dob: string;
     active: number;
+    profilePic : string;
 
 }
