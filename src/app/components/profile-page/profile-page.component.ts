@@ -20,6 +20,7 @@ export class ProfilePageComponent implements OnInit {
   currentUser = this.authenticationService.currentUserValue;
   friends: any[];
   friendDetails: user[] =[];
+  userName:string;
 
   constructor(
     private authenticationService: UserService,
@@ -28,8 +29,8 @@ export class ProfilePageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    console.log(this.currentUser.userId);
+    this.userName = this.currentUser.userName;
+    console.log(this.currentUser.userName);
     this.authenticationService.getUserDetails(this.currentUser.userId).subscribe(data =>
       {
         console.log(this.currentUser.userId);
