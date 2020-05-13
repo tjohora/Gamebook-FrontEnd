@@ -1,49 +1,55 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist" id="myTab" style="position:relative">
+    <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Posts</a></li>
+    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
     <li role="presentation" class="active"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a>
     </li>
-    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments</a></li>
-    <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Posts</a></li>
     <li class="toggleText" style="position:absolute;right:20px;">Change Theme: <input class="toggle text-center"
             type="checkbox" (click)="change()" /></li>
 </ul>
 
+
 <div class="tab-content">
+    <!-- ------------------------------------------------------------------------------------------------------------ -->
+    <!-- -----------------------------------------  -->
     <!-- -----USERS SECTION OF ADMIN PAGE-----  -->
-    <div role="tabpanel" class="tab-pane active" id="users">
+    <!-- -----------------------------------------  -->
+    <!-- ------------------------------------------------------------------------------------------------------------ -->
+
+    <div role="tabpanel" class="tab-pane" id="users">
         <div class="test3 col-sm-12">
             <h2 class=" headers text-center">USERS</h2>
+            <div>
+
+                <!-- USER TOTAL STATS TABLE -->
+                <table class="statsTable table-striped table-hover col-sm-12">
+                    <thead class="text-center">
+                        <tr class="">
+                            <th>Active Users</th>
+                            <th>Removed Users</th>
+                            <th>Total Users</th>
+                        </tr>
+                    </thead>
+                    <tbody class="statsBody text-center">
+                        <ng-container ng-repeat="u in users">
+                            <tr class="">
+                                <td class="font-weight-bold">{{activeUsers}}</td>
+                                <td class="font-weight-bold">{{removedUsers}}</td>
+                                <td class="font-weight-bold">{{users.length}}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+                <br>
+            </div>
+
             <div class="d-flex justify-content-center searchRow text-center font-weight-bold"
                 [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">
                 <div class="p-2">Search By User Name: <input type="text" [(ngModel)]="searchText2"> </div>
             </div>
 
-            <table class="statsTable table-striped table-hover col-sm-12">
-                <thead class="text-center">
-                    <tr class="">
-                        <th>Active Users</th>
-                        <th>Removed Users</th>
-                        <th>Total Users</th>
-                    </tr>
-                </thead>
-                <tbody class="statsBody text-center">
-                    <ng-container ng-repeat="u in users">
-                        <tr class="">
-                            <td class="font-weight-bold">{{activeUsers}}</td>
-                            <td class="font-weight-bold">{{removedUsers}}</td>
-                            <td class="font-weight-bold">{{users.length}}</td>
-                        </tr>
-                    </ng-container>
-                </tbody>
-            </table>
-
-            <br>
-            <!-- COLLAPSE TABLE BUTTON -->
-            <button class="btn col-sm-12 collapseBtn" type="button" data-toggle="collapse"
-                data-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample3">Expand/Collapse
-                Users Table</button>
-
-            <div class="collapse show" id="collapseExample3">
+            <!-- TABLE TO DISPLAY ALL COMMENTS -->
+            <div class="collapse show font-weight-bold" id="collapseExample3">
                 <div class="well">
                     <table class="table table-striped table-hover"
                         [ngClass]="{'tablePosts': toggle, 'tablePosts2': !toggle}">
@@ -61,22 +67,24 @@
                         </thead>
                         <tbody>
                             <ng-container *ngFor='let u of users | filterUsers : searchText2; let i =index'>
-                            <tr *ngIf="u.active == 1" class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}"                              
-                                (click)='rowSelected(i)' [class.active]='i==selectedRow'>
-                                <td>{{u.userId}}</td>
-                                <td>{{u.profileId}}</td>
-                                <td>{{u.userName}}</td>
-                                <td>{{u.email}}</td>
-                                <td>{{u.fname}}</td>
-                                <td>{{u.lname}}</td>
-                                <td *ngIf="u.userType==2 ; else elseBlock">Admin</td>
-                                <ng-template #elseBlock>
-                                    <td>User</td>
-                                </ng-template>
-                                <td><button class='btn-outline-dark' id="remove" (click)="deleteUser(u.userId)">DELETE
-                                        USER</button>
-                                </td>
-                            </tr>
+                                <tr *ngIf="u.active == 1" class="dataFont"
+                                    [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}" (click)='rowSelected(i)'
+                                    [class.active]='i==selectedRow'>
+                                    <td>{{u.userId}}</td>
+                                    <td>{{u.profileId}}</td>
+                                    <td>{{u.userName}}</td>
+                                    <td>{{u.email}}</td>
+                                    <td>{{u.fname}}</td>
+                                    <td>{{u.lname}}</td>
+                                    <td *ngIf="u.userType==2 ; else elseBlock">Admin</td>
+                                    <ng-template #elseBlock>
+                                        <td>User</td>
+                                    </ng-template>
+                                    <td><button class='btn-outline-dark' id="remove"
+                                            (click)="deleteUser(u.userId)">DELETE
+                                            USER</button>
+                                    </td>
+                                </tr>
                             </ng-container>
                         </tbody>
                     </table>
@@ -85,16 +93,19 @@
         </div>
     </div>
 
+
+
+    <!-- ------------------------------------------------------------------------------------------------------------ -->
+    <!-- -----------------------------------------  -->
     <!-- -----POSTS SECTION OF ADMIN PAGE-----  -->
-    <div role="tabpanel" class="tab-pane" id="posts">
+    <!-- -----------------------------------------  -->
+    <!-- ------------------------------------------------------------------------------------------------------------ -->
+
+    <div role="tabpanel" class="tab-pane active" id="posts">
         <div class="test col-sm-12">
             <h2 class=" headers text-center">POSTS</h2>
-            <div class="d-flex searchRow text-center font-weight-bold"
-                [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">
-                <div class="p-2">Search By Post User : <input type="text" [(ngModel)]="searchText4"> </div>
-                <div class="p-2">Search By Post Header: <input type="text" [(ngModel)]="searchText3"></div>
-            </div>
 
+            <!-- POST TOTAL STATS TABLE -->
             <table class="statsTable table-striped table-hover col-sm-12">
                 <thead class="text-center">
                     <tr>
@@ -115,6 +126,7 @@
                 </tbody>
             </table>
 
+            <!-- POST TIME STATS TABLE -->
             <table class="statsTable table-striped table-hover col-sm-12">
                 <thead class="text-center">
                     <tr>
@@ -137,60 +149,117 @@
 
             <br>
 
-            <!-- COLLAPSE TABLE BUTTON -->
-            <button class="btn col-sm-12 collapseBtn" type="button" data-toggle="collapse"
-                data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Expand/Collapse
-                Posts Table</button>
-
-            <div class="collapse show" id="collapseExample">
+            <!-- TABLE TO DISPLAY REPORTED POSTS -->
+            <div class="collapse show col-sm-3 text-center font-weight-bold" id="collapseExample"
+                style="float:left; padding-top:10px">
+                <h3>Reported Posts</h3>
+                <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">Find Post By ID : <input
+                        type="number" [(ngModel)]="searchPid"> </div>
                 <div class="well">
                     <table class="table table-striped table-hover"
                         [ngClass]="{'tablePosts': toggle, 'tablePosts2': !toggle}">
                         <thead class="theadPosts" [ngClass]="{'theadPosts': toggle, 'theadPosts2': !toggle}">
                             <tr class="theadFont" [ngClass]="{'theadFont': toggle, 'theadFont2': !toggle}">
-                                <th>User Name</th>
-                                <th>Post Header</th>
-                                <th>Post Content</th>
-                                <th>Date</th>
-                                <th>Media</th>
-                                <th>Action</th>
+                                <th>Post ID</th>
+                                <th>Times Flagged</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            <ng-container
-                                *ngFor='let p of posts | filterHeaders : searchText3 | filterPostUser : searchText4; let i =index'>
-                                <tr *ngIf="p.active == 1" class="dataFont"
-                                    [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}">
-                                    <td>{{p.userName}}</td>
-                                    <td>{{p.postHeader}}</td>
-                                    <td>{{p.postContent}}</td>
-                                    <td>{{p.postDate}}</td>
-                                    <td>{{p.media}}</td>
-                                    <td><button class='btn-outline-dark' id="remove"
-                                            (click)="deletePost(p.postId)">DELETE
-                                            POST</button>
-                                    </td>
+                            <ng-container *ngFor='let fp of flaggedPosts; let i =index'>
+                                <tr class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}">
+                                    <td>{{fp.postId}}</td>
+                                    <td>{{fp.flagPost}}</td>
                                 </tr>
                             </ng-container>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <!-- TABLE TO DISPLAY ALL POSTS -->
+            <div class="collapse show col-sm-9 text-center font-weight-bold" id="collapseExample"
+                style="float:right; padding-top:10px">
+                <h3>All Posts</h3>
+                <div class="filler" [ngClass]="{'filler': toggle, 'filler2': !toggle}">
+                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:left">Search
+                        By
+                        Post Header: <input type="text" [(ngModel)]="searchText3"></div>
+                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:right">Search
+                        By
+                        Post Content: <input type="text" [(ngModel)]="searchPcontent"></div>
+                    <div class="well">
+
+                        <table class="table table-striped table-hover"
+                            [ngClass]="{'tablePosts': toggle, 'tablePosts2': !toggle}">
+                            <thead class="theadPosts" [ngClass]="{'theadPosts': toggle, 'theadPosts2': !toggle}">
+                                <tr class="theadFont" [ngClass]="{'theadFont': toggle, 'theadFont2': !toggle}">
+                                    <th>User Name</th>
+                                    <th>Post ID</th>
+                                    <th>Post Header</th>
+                                    <th>Post Content</th>
+                                    <th>Date</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <ng-container
+                                    *ngFor='let p of posts | filterHeaders : searchText3 | filterPostContent : searchPcontent | filterPostUser : searchText4 | filterPostID : searchPid; let i =index'>
+                                    <tr *ngIf="p.active == 1" class="dataFont"
+                                        [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}">
+                                        <td>{{p.userName}}</td>
+                                        <td>{{p.postId}}</td>
+                                        <td>{{p.postHeader}}</td>
+                                        <td>{{p.postContent}}</td>
+                                        <td>{{p.postDate}}</td>
+                                        <td>
+
+                                            <div class="dropdown">
+                                                <button type="button" class="btn-outline-dark dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Actions...
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="release"
+                                                            ng-click="releasePost(p.postId)"
+                                                            (click)="releasePost(p.postId)">ALLOW
+                                                        </button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="edit"
+                                                            [routerLink]="['/editPost', p.postId]">EDIT
+                                                        </button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="remove"
+                                                            (click)="deletePost(p.postId)"
+                                                            (click)="releasePost(p.postId)">DELETE
+                                                        </button></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- ------------------------------------------------------------------------------------------------------------ -->
+    <!-- -----------------------------------------  -->
     <!-- -----COMMENTS SECTION OF ADMIN PAGE-----  -->
+    <!-- -----------------------------------------  -->
+    <!-- ------------------------------------------------------------------------------------------------------------ -->
+
     <div role="tabpanel" class="tab-pane" id="comments">
         <div class="test2 col-sm-12">
             <h2 class="headers text-center">COMMENTS</h2>
-            <div class="d-flex searchRow text-center font-weight-bold"
-                [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">
-                <div class="p-2">Search By Comments User: <input type="text" [(ngModel)]="searchText2"></div>
-                <div class="p-2">Search By Comments Content: <input type="text" [(ngModel)]="searchText"></div>
-            </div>
 
 
+            <!--  COMMENTS TOTAL STATS TABLE -->
             <table class="statsTable table-striped table-hover col-sm-12">
                 <thead class="text-center">
                     <tr class="">
@@ -210,7 +279,7 @@
                 </tbody>
             </table>
 
-            
+            <!--  COMMENTS TIME STATS TABLE -->
             <table class="statsTable table-striped table-hover col-sm-12">
                 <thead class="text-center">
                     <tr>
@@ -232,39 +301,97 @@
             </table>
 
             <br>
-            <!-- COLLAPSE TABLE BUTTON -->
-            <button class="btn btn-light col-sm-12 collapseBtn" type="button" data-toggle="collapse"
-                data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample">Expand/Collapse
-                Comments Table</button>
-
-            <div class="collapse show" id="collapseExample2">
+            <!-- TABLE TO DISPLAY REPORTED COMMENTS -->
+            <div class="collapse show col-sm-3 text-center font-weight-bold" id="collapseExample"
+                style="float:left; padding-top:10px">
+                <h3>Reported Comments</h3>
+                <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}">Find By ID : <input
+                        type="number" [(ngModel)]="searchCid"> </div>
                 <div class="well">
                     <table class="table table-striped table-hover"
                         [ngClass]="{'tablePosts': toggle, 'tablePosts2': !toggle}">
                         <thead class="theadPosts" [ngClass]="{'theadPosts': toggle, 'theadPosts2': !toggle}">
                             <tr class="theadFont" [ngClass]="{'theadFont': toggle, 'theadFont2': !toggle}">
-                                <th>User Name</th>
-                                <th>Comment Date</th>
-                                <th>Content</th>
-                                <th>Post ID</th>
-                                <th>Action</th>
+                                <th>Comment ID</th>
+                                <th>Times Flagged</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <ng-container *ngFor='let c of comments | filterComments : searchText | filterUsers : searchText2; let i =index'>
-                            <tr  *ngIf="c.active == 1" class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}"                               
-                                (click)='rowSelected(i)' [class.active]='i==selectedRow'>
-                                <td>{{c.userName}}</td>
-                                <td>{{c.commentDate}}</td>
-                                <td>{{c.content}}</td>
-                                <td>{{c.postId}}</td>
-                                <td><button class='btn-outline-dark' id="remove"
-                                        (click)="deleteComment(c.commentID)">DELETE
-                                        COMMENT</button></td>
-                            </tr>
-                        </ng-container>
+
+                            <ng-container *ngFor='let fc of flaggedComments; let i =index'>
+                                <tr class="dataFont" [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}">
+                                    <td>{{fc.commentId}}</td>
+                                    <td>{{fc.flagComment}}</td>
+                                </tr>
+                            </ng-container>
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- TABLE TO DISPLAY ALL COMMENTS -->
+            <div class="collapse show col-sm-9 text-center font-weight-bold" id="collapseExample"
+                style="float:right; padding-top:10px">
+                <h3>All Comments</h3>
+                <div class="filler" [ngClass]="{'filler': toggle, 'filler2': !toggle}">
+                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:left">Search
+                        By Creator:
+                        <input type="text" [(ngModel)]="searchText2"></div>
+                    <div class="p-2" [ngClass]="{'searchRow': toggle, 'searchRow2': !toggle}" style="float:right">Search
+                        By Content:
+                        <input type="text" [(ngModel)]="searchText"></div>
+                    <div class="well">
+                        <table class="table table-striped table-hover"
+                            [ngClass]="{'tablePosts': toggle, 'tablePosts2': !toggle}">
+                            <thead class="theadPosts" [ngClass]="{'theadPosts': toggle, 'theadPosts2': !toggle}">
+                                <tr class="theadFont" [ngClass]="{'theadFont': toggle, 'theadFont2': !toggle}">
+                                    <th>Comment Date</th>
+                                    <th>Comment ID</th>
+                                    <th>User Name</th>
+                                    <th>Content</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container
+                                    *ngFor='let c of comments | filterComments : searchText | filterUsers : searchText2 | filterCommentID : searchCid; let i =index'>
+                                    <tr *ngIf="c.active == 1" class="dataFont"
+                                        [ngClass]="{'dataFont': toggle, 'dataFont2': !toggle}" (click)='rowSelected(i)'
+                                        [class.active]='i==selectedRow'>
+                                        <td>{{c.commentDate}}</td>
+                                        <td>{{c.commentID}}</td>
+                                        <td>{{c.userName}}</td>
+                                        <td>{{c.content}}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn-outline-dark btn-sm dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Actions...
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="release"
+                                                            ng-click="releaseComment(c.commentID)"
+                                                            (click)="releaseComment(c.commentID)">ALLOW
+                                                        </button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="edit"
+                                                            [routerLink]="['/editComment', c.commentID]">EDIT
+                                                        </button></a>
+                                                    <a class="dropdown-item"><button
+                                                            class='btn-outline-dark btn-sm btn-block' id="remove"
+                                                            (click)="deleteComment(c.commentID)"
+                                                            (click)="releaseComment(c.commentID)">DELETE
+                                                        </button></a>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

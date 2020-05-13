@@ -1,18 +1,19 @@
 
-    .tablePosts{background-color:rgb(14, 131, 4); border-radius: 5px;}   
-    .theadPosts{ background-color: black; border-radius: 5px;}
-    .searchRow{font-style: oblique; color: black; background-color:rgb(14, 131, 4); border-radius: 5px;}
+    .tablePosts{background-color:rgb(14, 131, 4); }   
+    .theadPosts{ background-color: black;}
+    .searchRow{font-style: oblique; color: black; background-color:rgb(14, 131, 4); }
     .headers{color:black}
-    .countHeaders{color: rgb(14, 131, 4); background-color: black; border-radius: 5px;}
-    .theadFont{color : rgb(14, 131, 4); border-radius: 5px;}
+    .countHeaders{color: rgb(14, 131, 4); background-color: black;}
+    .theadFont{color : rgb(14, 131, 4); }
     .dataFont{color: black}
+    .filler{background-color:rgb(14, 131, 4 )}
 
-    .tablePosts2{ background-color: rgb(218, 122, 12); border-radius: 5px;}
-    .theadPosts2{ background-color: black; border-radius: 5px;}
-    .searchRow2{font-style: oblique; color: black; background-color:rgb(218, 122, 12); border-radius: 5px;}
+
+    .theadPosts2{ background-color: black; }
+    .searchRow2{font-style: oblique; color: black;}
     .headers2{color:rgb(214, 202, 34)}
-    .countHeaders2{color: rgb(218, 122, 12);  background-color: black; border-radius: 5px;}
-    .theadFont2{color:rgb(218, 122, 12); border-radius: 5px;}
+    .countHeaders2{color: rgb(218, 122, 12);  background-color: black;}
+    .theadFont2{color:white}
     .dataFont2{color: black}
 
     .toggleText{
@@ -69,43 +70,12 @@
         left: 32px;
       }
 
-      /* .adminDiv{
-        padding-left: 10px;
-        padding-bottom: 50px ;
-        min-width: 1366px;
-      } */
-
-      /* .test{
-        border-top-style: double;
-        position: static;
-        border-bottom-style: double;    
-      }
-
-      .test2{
-        border-top-style: double;
-        position: static;
-        border-bottom-style: double;
-        border-spacing: 10px;    
-      }
-
-      .test3{
-        position: static;
-        border-top-style: double;
-        border-bottom-style: double;
-        border-spacing: 10px;    
-      } */
-
       .collapseBtn{
         color: white;
         background-color: rgb(53, 68, 155);
         margin-bottom: 10px;
       }
-
-      /* .well {
-        overflow:scroll;
-        height:500px;
-    } */
-
+      
     ul li{
       display: inline-block;
       margin: 10px;

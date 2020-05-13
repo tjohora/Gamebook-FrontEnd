@@ -2,7 +2,7 @@
   <h1>Welcome {{currentUser.userName}} </h1>
   <div class="row">
 
-    <div class="col-sm-3 border-right border-top border-bottom">
+    <div class="col-sm-2 border-right border-top border-bottom">
       <div class=" card">
         <img src="assets/img/luffy.png" alt="John" style="width:100%">
         <h1>{{currentUser.userName}}</h1>
@@ -30,13 +30,12 @@
     </div>
 
 
-    <div class="col-sm-6 border-right border-left border-top border-bottom">
-      <h3>Your Posts</h3>
+    <div class="col-sm-8 border-right border-left border-top border-bottom">
+      <h3>{{currentUser.userName}}'s Posts:</h3>
       <div *ngIf="!(( noOfPosts )) || (( noOfPosts )) == 0">
         <h2 style="text-align: center">No Posts!(Yet..)</h2>
       </div>
       <div *ngIf="(( noOfPosts )) > 0">
-
         <div *ngFor="let post of posts">
           <app-post *ngIf="post.active=='1'" [post]="post"></app-post>
         </div>
@@ -46,33 +45,7 @@
     </div>
 
 
-    <div class="col-sm-3 border-left border-top border-bottom">
-      <div class="border-bottom">
-        <app-post-form></app-post-form>
-      </div>
-      <div>
-        <h2>Friends List</h2>
-
-        <div *ngFor="let item of friendDetails" class="w3-container">
-
-          <div class="col-sm-6 border-right border-top border-bottom">
-            <div class=" card">
-              <img src="assets/img/avatar.png" alt="John" style="width:100%">
-
-              <p class="title">{{item.fname}}</p>
-
-
-
-
-
-
-
-
-
-
-            </div>
-          </div>
-        </div>
-
-      </div>
+    <div class="col-sm-2 border-left border-top border-bottom">
+      <app-post-form></app-post-form>
     </div>
+  </div>

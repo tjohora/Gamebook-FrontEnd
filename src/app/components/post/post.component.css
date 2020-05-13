@@ -16,3 +16,19 @@ buttons fade in as a visual cue for the user */
   opacity: 0.75;
   cursor: pointer;
 }
+
+.topright{
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
+  color: rgb(0, 89, 255);
+}
+
+.topright:hover{
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+
+
