@@ -9,7 +9,7 @@
         <p class="title">{{currentUser.fname}} {{currentUser.lname}}</p>
         <p>{{currentUser.dob}}</p>
         <p>{{currentUser.address}}</p>
-        <p>Profile :</p>
+        
         <div style="margin: 24px 0;">
           <a href="#"><i class="fa fa-dribbble"></i></a>
           <a href="#"><i class="fa fa-twitter"></i></a>
@@ -46,6 +46,28 @@
 
 
     <div class="col-sm-2 border-left border-top border-bottom">
-      <app-post-form></app-post-form>
+
+      <div class="border-bottom">
+        <app-post-form></app-post-form>
+      </div>
+      
+      <h2>Friends List</h2>
+
+        <div *ngFor="let item of friendDetails" class="w3-container">
+          <div class="col-sm-6 border-right border-top border-bottom">
+            <div class=" card">
+              <img src="assets/img/avatar.png" alt="John" style="width:100%">
+              <p class="title">{{item.fname}}</p>
+            </div>
+
+
+          </div>
+        </div>
+
+
+
+
     </div>
+
+    
   </div>

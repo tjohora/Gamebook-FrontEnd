@@ -115,6 +115,9 @@ export class PostComponent implements OnInit {
       }
     })
   }
-
+  addFriend(friendId){
+    // console.log(userId)
+   this.authenticationService.addFriend(this.currentUser.userId, friendId)
+  }
 
 }

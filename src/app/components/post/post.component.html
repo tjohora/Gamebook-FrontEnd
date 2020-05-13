@@ -45,6 +45,12 @@
                     <button type="button" class="btn btn-danger" (click)="deletePost(post.postId)">Delete</button>
                 </div>
             </div>
+
+            <div *ngIf="post.userId !== currentUser.userId">
+                <button type="button" class="btn btn-outline-danger" (click)="addFriend(post.userId)">Add Friend</button>
+            </div>
+
+            
     </div>
     <br>
 
@@ -56,5 +62,6 @@
         Report Post! </a>    
 
     <a style= "position: relative; float:right" [routerLink]="['/commentList', post.postId]">Comments</a>
+    
     </div>
 </div>
