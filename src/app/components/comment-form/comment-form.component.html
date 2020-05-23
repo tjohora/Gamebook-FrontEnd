@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="userId !== undefined">
-        <form class="w-50 p-2 my-2 border mx-auto" [formGroup]="commentForm"
+        <form class="w-50 p-2 my-2 border mx-auto comment" [formGroup]="commentForm"
             (ngSubmit)="sendComment(commentForm.value)">
             <div class="form-group">
                 <h4>Make Comment</h4>

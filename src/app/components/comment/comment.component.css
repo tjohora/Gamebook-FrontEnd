@@ -35,3 +35,7 @@ a {
     opacity: 0.75;
     cursor: pointer;
   }
+
+  .media{
+    background-color: white;
+  }
